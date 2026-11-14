@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -81,6 +80,11 @@ button:active{transform:scale(.94);filter:brightness(1.4);transition:.12s}
  <p>Murah, mudah, dan praktis. Pilih game favoritmu sekarang.</p>
 </section>
 
+<section class="panel" id="bestSellerPanel">
+ <h2>🔥 PRODUK TERLARIS</h2>
+ <div id="bestSellerList" class="notice">Belum ada data pesanan di perangkat ini. Produk yang dipesan akan muncul di sini.</div>
+</section>
+
 <section id="catalog">
  <h2>🎮 PILIH GAME</h2>
 
@@ -124,11 +128,6 @@ button:active{transform:scale(.94);filter:brightness(1.4);transition:.12s}
    </div>
   </div>
  </div>
-
- <section class="panel" id="bestSellerPanel">
-  <h2>🔥 PRODUK TERLARIS</h2>
-  <div id="bestSellerList" class="notice">Belum ada data pesanan di perangkat ini. Produk yang dipesan akan muncul di sini.</div>
- </section>
 </section>
 
 <section id="order" class="hidden">
@@ -203,7 +202,6 @@ const games={
    ["400 Token",75000],["800 Token",149000],
    ["1200 Token",220000]
   ]
- }
 };
 
 let currentGame="";
@@ -314,91 +312,3 @@ function updateBestSellers(){
  entries.forEach(([key,count],index)=>{
   const parts=key.split("|");
   const gameName=games[parts[0]]?games[parts[0]].name:parts[0];
-
-  const row=document.createElement("p");
-  row.style.cssText="padding:8px 0;border-bottom:1px solid #293950;line-height:1.5";
-  row.textContent=(index+1)+". "+gameName+" — "+parts.slice(1).join("|")+" ("+count+" pesanan)";
-  target.appendChild(row);
- });
-}
-
-function recordPopularProduct(){
- if(!selected||!currentGame)return;
-
- try{
-  const counts=JSON.parse(localStorage.getItem("nolanPopularProducts")||"{}")||{};
-  const key=currentGame+"|"+selected[0];
-
-  counts[key]=(Number(counts[key])||0)+1;
-  localStorage.setItem("nolanPopularProducts",JSON.stringify(counts));
- }catch(e){}
-}
-
-function backHome(){
- document.getElementById("order").classList.add("hidden");
- document.getElementById("catalog").classList.remove("hidden");
-
- updateBestSellers();
- window.scrollTo(0,0);
-}
-
-function continuePayment(){
- const userId=document.getElementById("userId").value.trim();
- const serverId=document.getElementById("serverId").value.trim();
- const buyer=document.getElementById("buyer").value.trim();
-
- if(!userId){alert("Masukkan User ID Bos!");return}
- if(currentGame==="ml"&&!serverId){alert("Masukkan Server ID juga Bos!");return}
- if(!selected){alert("Pilih nominal!");return}
- if(!buyer){alert("Masukkan nama pembeli!");return}
-
- const order={
-  gameId:currentGame,
-  game:games[currentGame].name,
-  userId:userId,
-  serverId:currentGame==="ml"?serverId:"",
-  buyer:buyer,
-  item:selected[0],
-  price:selected[1],
-  orderId:"NL"+Date.now()
- };
-
- try{
-  sessionStorage.setItem("nolanOrder",JSON.stringify(order));
-  recordPopularProduct();
-  window.location.href="payment.html";
- }catch(e){
-  alert("Penyimpanan pesanan gagal. Coba lagi.");
- }
-}
-
-/* EFEK GELOMBANG SENTUHAN */
-document.addEventListener("pointerdown",function(e){
- const target=e.target.closest("button,.game,.pack");
- if(!target)return;
-
- const ripple=document.createElement("span");
- const rect=target.getBoundingClientRect();
-
- ripple.style.cssText=`
-  position:absolute;
-  width:25px;
-  height:25px;
-  border-radius:50%;
-  background:#00e5ff88;
-  pointer-events:none;
-  left:${e.clientX-rect.left-12}px;
-  top:${e.clientY-rect.top-12}px;
-  transform:scale(0);
-  animation:rippleTouch .55s ease-out forwards;
-  z-index:5;
- `;
-
- target.appendChild(ripple);
- setTimeout(()=>ripple.remove(),600);
-});
-
-updateBestSellers();
-</script>
-</body>
-</html>
