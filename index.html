@@ -28,13 +28,79 @@ radial-gradient(circle at 100% 20%,#003b48 0,transparent 35%),
 color:white;
 font-family:Arial,sans-serif;
 min-height:100vh;
+position:relative;
+isolation:isolate;
+overflow-x:hidden;
 animation:bgRGB 8s ease-in-out infinite alternate;
 }
+
+/* ===== BACKGROUND RGB ===== */
 
 @keyframes bgRGB{
 0%{filter:hue-rotate(0deg)}
 100%{filter:hue-rotate(35deg)}
 }
+
+/* Cahaya neon bergerak */
+
+body::before,
+body::after{
+content:"";
+position:fixed;
+width:320px;
+height:320px;
+border-radius:50%;
+filter:blur(90px);
+opacity:.45;
+pointer-events:none;
+z-index:-1;
+}
+
+body::before{
+background:#00e5ff;
+top:5%;
+left:-120px;
+animation:cyanMove 9s ease-in-out infinite alternate;
+}
+
+body::after{
+background:#ff1744;
+right:-120px;
+bottom:0;
+animation:redMove 11s ease-in-out infinite alternate;
+}
+
+@keyframes cyanMove{
+0%{
+transform:translate(0,0) scale(.8);
+opacity:.3;
+}
+50%{
+transform:translate(180px,220px) scale(1.2);
+opacity:.6;
+}
+100%{
+transform:translate(60px,420px) scale(.9);
+opacity:.4;
+}
+}
+
+@keyframes redMove{
+0%{
+transform:translate(0,0) scale(1);
+opacity:.35;
+}
+50%{
+transform:translate(-180px,-180px) scale(1.3);
+opacity:.65;
+}
+100%{
+transform:translate(-50px,-400px) scale(.85);
+opacity:.4;
+}
+}
+
+/* ===== HEADER ===== */
 
 header{
 background:#0c101bea;
@@ -107,6 +173,8 @@ border-left:4px solid var(--red);
 padding-left:11px;
 text-shadow:0 0 9px #ff174455;
 }
+
+/* ===== KARTU GAME ===== */
 
 .games{
 display:grid;
@@ -194,6 +262,8 @@ color:#aabbd2;
 margin-top:5px;
 }
 
+/* ===== TOMBOL ===== */
+
 button{
 cursor:pointer;
 border:0;
@@ -242,6 +312,8 @@ box-shadow:0 0 20px #ff1744aa,0 0 15px #00e5ff66;
 transform:scale(1.02);
 }
 
+/* ===== PANEL PESANAN ===== */
+
 .panel{
 background:linear-gradient(145deg,#171d2d,#101522);
 border:1px solid #344052;
@@ -289,6 +361,8 @@ border-color:var(--cyan);
 box-shadow:0 0 10px #00e5ff55;
 transform:scale(1.01);
 }
+
+/* ===== NOMINAL ===== */
 
 .packages{
 display:grid;
@@ -404,12 +478,14 @@ opacity:0;
 }
 }
 
+/* ===== RESPONSIVE ===== */
+
 @media(min-width:650px){
 .games{grid-template-columns:repeat(4,1fr)}
 .packages{grid-template-columns:repeat(3,1fr)}
 }
 
-/* Pengaturan aksesibilitas */
+/* ===== AKSESIBILITAS ===== */
 
 @media(prefers-reduced-motion:reduce){
 *,*::before,*::after{
@@ -700,4 +776,5 @@ document.addEventListener("pointerdown",function(e){
 </script>
 
 </body>
-</html>
+ </html>
+ 
