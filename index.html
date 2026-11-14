@@ -12,16 +12,34 @@
 html{scroll-behavior:smooth}
 body{background:radial-gradient(circle at 0% 0%,#410b1d 0,transparent 35%),radial-gradient(circle at 100% 20%,#003b48 0,transparent 35%),#090b14;color:white;font-family:Arial,sans-serif;min-height:100vh;animation:bgRGB 8s ease-in-out infinite alternate}
 @keyframes bgRGB{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(35deg)}}
+
+/* HEADER */
 header{background:#0c101bea;padding:19px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #263750;box-shadow:0 3px 20px #ff174422}
 .logo{font-size:23px;font-weight:900;color:var(--cyan);text-shadow:0 0 8px var(--cyan),0 0 18px #00e5ff88;animation:logoRGB 3s infinite alternate}
 @keyframes logoRGB{from{text-shadow:0 0 8px var(--cyan),0 0 18px var(--cyan)}to{text-shadow:0 0 8px var(--red),0 0 22px var(--red)}}
 header small{color:#9babc4;letter-spacing:2px}
 main{max-width:950px;margin:auto;padding:18px}
-.hero{padding:28px;border-radius:16px;background:linear-gradient(120deg,#3b1024,#102c45,#28134b);margin-bottom:25px;border:1px solid #ff174477;box-shadow:0 0 18px #ff174422,0 0 22px #00e5ff22;position:relative;overflow:hidden;animation:heroRGB 3s infinite alternate}
+
+/* HERO BANNER - UKURAN SEDANG */
+.hero{
+ padding:19px 20px;
+ border-radius:14px;
+ background:linear-gradient(120deg,#3b1024,#102c45,#28134b);
+ margin-bottom:14px;
+ border:1px solid #ff174477;
+ box-shadow:0 0 18px #ff174422,0 0 22px #00e5ff22;
+ position:relative;
+ overflow:hidden;
+ animation:heroRGB 3s infinite alternate;
+}
 @keyframes heroRGB{from{box-shadow:0 0 15px #ff174433,0 0 20px #00e5ff22}to{box-shadow:0 0 22px #ff174466,0 0 28px #00e5ff55}}
-.hero h1{font-size:25px;margin-bottom:9px;color:white;text-shadow:0 0 12px var(--red)}
-.hero p,.muted{color:#b7c5d9;font-size:13px;line-height:1.6}
-h2{font-size:19px;margin:23px 0 15px;border-left:4px solid var(--red);padding-left:11px;text-shadow:0 0 9px #ff174455}
+.hero h1{font-size:21px;margin-bottom:6px;color:white;text-shadow:0 0 12px var(--red)}
+.hero p,.muted{color:#b7c5d9;font-size:12px;line-height:1.6}
+
+/* JUDUL */
+h2{font-size:19px;margin:20px 0 13px;border-left:4px solid var(--red);padding-left:11px;text-shadow:0 0 9px #ff174455}
+
+/* GAME */
 .games{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
 .game{background:linear-gradient(145deg,#1b2031,#101522);border:1px solid #344052;border-radius:13px;overflow:hidden;cursor:pointer;transition:.25s;position:relative;isolation:isolate;animation:cardEnter .6s ease both}
 .game:nth-child(2){animation-delay:.08s}
@@ -36,40 +54,55 @@ h2{font-size:19px;margin:23px 0 15px;border-left:4px solid var(--red);padding-le
 .info{padding:12px}
 .info h3{font-size:15px}
 .info p{font-size:12px;color:#aabbd2;margin-top:5px}
+
+/* BUTTON */
 button{cursor:pointer;border:0;border-radius:9px;padding:13px;font-weight:bold;transition:.2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;position:relative;overflow:hidden}
 .game button,.primary{background:linear-gradient(90deg,var(--red),#a900ff);color:white;width:100%;margin-top:12px;box-shadow:0 0 12px #ff174455}
 .game button::after,.primary::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(90deg,transparent,#ffffff66,transparent);transform:skewX(-25deg);animation:buttonLight 2.5s infinite;pointer-events:none}
 @keyframes buttonLight{to{left:150%}}
 .game button:hover,.primary:hover{box-shadow:0 0 20px #ff1744aa,0 0 15px #00e5ff66;transform:scale(1.02)}
+
+/* PANEL */
 .panel{background:linear-gradient(145deg,#171d2d,#101522);border:1px solid #344052;padding:18px;border-radius:14px;margin-top:15px;box-shadow:0 0 15px #00e5ff16}
 
-/* BANNER PROMO */
+/* BANNER PROMO - LEBIH RINGKAS */
 .promo-banner{
  background:linear-gradient(110deg,#24133f,#102e45,#3b172d);
  border:1px solid #00e5ff88;
  border-radius:12px;
- padding:14px 16px;
- margin-top:12px;
+ padding:12px 15px;
+ margin-top:10px;
+ margin-bottom:12px;
  box-shadow:0 0 13px #00e5ff22,0 0 12px #ff174422;
  position:relative;
  overflow:hidden;
 }
-.promo-banner h3{
- font-size:15px;
- color:#00e5ff;
- margin-bottom:6px;
+.promo-banner h3{font-size:14px;color:#00e5ff;margin-bottom:5px}
+.promo-banner p{font-size:12px;color:#fff;line-height:1.5}
+.promo-banner small{display:block;color:#aebed0;font-size:10px;margin-top:5px}
+
+/* FLASH SALE */
+.flash-sale{
+ background:linear-gradient(110deg,#421327,#241342,#102c45);
+ border:1px solid #ff174488;
+ border-radius:12px;
+ padding:13px 15px;
+ margin:10px 0 14px;
+ box-shadow:0 0 14px #ff174422;
+ position:relative;
+ overflow:hidden;
 }
-.promo-banner p{
- font-size:12px;
- color:#fff;
- line-height:1.6;
-}
-.promo-banner small{
- display:block;
- color:#aebed0;
- font-size:10px;
- margin-top:5px;
-}
+.flash-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.flash-sale h3{font-size:15px;color:#ff718c}
+.flash-badge{font-size:10px;background:#ff1744;color:white;padding:5px 8px;border-radius:20px;font-weight:bold}
+.flash-sale p{font-size:12px;color:#c5d2e5;line-height:1.5;margin-top:7px}
+.countdown{display:flex;gap:8px;margin-top:10px}
+.time-box{background:#090e1b;border:1px solid #ffffff22;border-radius:8px;padding:7px 10px;min-width:48px;text-align:center}
+.time-box b{display:block;font-size:17px;color:var(--cyan)}
+.time-box small{font-size:9px;color:#aabbd2}
+.flash-status{font-size:11px;color:#9eafc6;margin-top:8px}
+
+/* UMUM */
 .hidden{display:none!important}
 .back{background:#293a54;color:white;margin-bottom:15px;border:1px solid #52637d}
 .back:hover{border-color:var(--cyan);box-shadow:0 0 10px #00e5ff55}
@@ -92,34 +125,142 @@ button:active{transform:scale(.94);filter:brightness(1.4);transition:.12s}
 .pack:active{transform:scale(.95);background:#123b50;box-shadow:0 0 20px var(--cyan)}
 .game:active::before{filter:brightness(2)}
 @keyframes rippleTouch{to{transform:scale(9);opacity:0}}
-@media(min-width:650px){.games{grid-template-columns:repeat(4,1fr)}.packages{grid-template-columns:repeat(3,1fr)}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* WHATSAPP MELAYANG */
+.whatsapp-float{
+ position:fixed;
+ right:17px;
+ bottom:18px;
+ z-index:900;
+ display:flex;
+ align-items:center;
+ gap:8px;
+ background:linear-gradient(135deg,#16c75a,#078d43);
+ color:white;
+ text-decoration:none;
+ padding:12px 16px;
+ border-radius:50px;
+ font-size:13px;
+ font-weight:bold;
+ box-shadow:0 4px 18px #00d65a66;
+ transition:.2s;
+}
+.whatsapp-float:hover{transform:translateY(-3px);box-shadow:0 0 22px #00d65a99}
+.whatsapp-icon{font-size:20px}
+
+/* LOADING SCREEN */
+#loadingScreen{
+ position:fixed;
+ inset:0;
+ z-index:9999;
+ background:#090b14;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ transition:opacity .4s ease,visibility .4s ease;
+}
+#loadingScreen.hide{
+ opacity:0;
+ visibility:hidden;
+ pointer-events:none;
+}
+.loading-logo{
+ font-size:27px;
+ font-weight:900;
+ color:var(--cyan);
+ text-shadow:0 0 10px var(--cyan),0 0 25px #00e5ff88;
+ animation:loadingPulse 1s infinite alternate;
+}
+@keyframes loadingPulse{from{transform:scale(.96);opacity:.7}to{transform:scale(1.04);opacity:1}}
+.loading-line{
+ width:130px;
+ height:4px;
+ background:#253247;
+ border-radius:10px;
+ overflow:hidden;
+ margin-top:17px;
+}
+.loading-line span{
+ display:block;
+ height:100%;
+ width:40%;
+ background:linear-gradient(90deg,var(--red),var(--cyan));
+ border-radius:10px;
+ animation:loadingMove 1s infinite ease-in-out;
+}
+@keyframes loadingMove{from{transform:translateX(-110%)}to{transform:translateX(350%)}}
+.loading-text{font-size:10px;color:#8396b2;margin-top:10px;letter-spacing:2px}
+
+@media(min-width:650px){
+ .games{grid-template-columns:repeat(4,1fr)}
+ .packages{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:380px){
+ main{padding:12px}
+ .hero{padding:16px}
+ .hero h1{font-size:19px}
+ .whatsapp-float{right:12px;bottom:12px;padding:10px 13px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+}
 </style>
 </head>
 
 <body>
+
+<!-- LOADING SCREEN -->
+<div id="loadingScreen">
+ <div class="loading-logo">NOLAN TOPUP💎</div>
+ <div class="loading-line"><span></span></div>
+ <div class="loading-text">LOADING GAME STORE...</div>
+</div>
+
 <header>
  <div class="logo">NOLAN ToPuP💎</div>
  <small>GAME STORE</small>
 </header>
 
 <main>
+
+<!-- HERO BANNER -->
 <section class="hero">
  <h1>TOP UP GAME FAVORITMU!</h1>
  <p>Murah, mudah, dan praktis. Pilih game favoritmu sekarang.</p>
 </section>
 
+<!-- PRODUK TERLARIS -->
 <section class="panel" id="bestSellerPanel">
-  <h2>🔥 PRODUK TERLARIS</h2>
-  <div id="bestSellerList" class="notice">Belum ada data pesanan di perangkat ini. Produk yang dipesan akan muncul di sini.</div>
+ <h2>🔥 PRODUK TERLARIS</h2>
+ <div id="bestSellerList" class="notice">Belum ada data pesanan di perangkat ini. Produk yang dipesan akan muncul di sini.</div>
 </section>
 
+<!-- BANNER PROMO -->
 <div class="promo-banner">
  <h3>🎁 PROMO NOLAN TOPUP 🤑</h3>
  <p>Dapatkan kode promo dan pakai untuk mendapatkan diskon 6% sampai 7% 🤑</p>
  <small>Kode promo dibagikan secara pribadi. Berlaku untuk Diamond, tidak termasuk WDP dan Membership.</small>
 </div>
 
+<!-- FLASH SALE -->
+<section class="flash-sale" id="flashSale">
+ <div class="flash-top">
+  <h3>⚡ FLASH SALE NOLAN</h3>
+  <span class="flash-badge">PROMO SPESIAL</span>
+ </div>
+ <p id="flashDescription">Flash sale akan segera hadir. Pantau terus promo terbaru NOLAN TOPUP!</p>
+
+ <div class="countdown" id="flashCountdown">
+  <div class="time-box"><b id="flashHours">--</b><small>JAM</small></div>
+  <div class="time-box"><b id="flashMinutes">--</b><small>MENIT</small></div>
+  <div class="time-box"><b id="flashSeconds">--</b><small>DETIK</small></div>
+ </div>
+
+ <div class="flash-status" id="flashStatus">Jadwal dan harga promo belum diaktifkan.</div>
+</section>
+
+<!-- KATALOG GAME -->
 <section id="catalog">
  <h2>🎮 PILIH GAME</h2>
 
@@ -127,6 +268,7 @@ button:active{transform:scale(.94);filter:brightness(1.4);transition:.12s}
  <input id="gameSearch" placeholder="Cari Mobile Legends, Free Fire..." autocomplete="off" oninput="searchGames()">
 
  <div class="games" id="gamesGrid">
+
   <div class="game" data-game="ml" onclick="openGame('ml')">
    <img src="https://placehold.co/500x300/172b52/ffffff?text=MOBILE+LEGENDS" alt="Mobile Legends">
    <div class="info">
@@ -162,9 +304,11 @@ button:active{transform:scale(.94);filter:brightness(1.4);transition:.12s}
     <button>KLIK</button>
    </div>
   </div>
+
  </div>
 </section>
 
+<!-- HALAMAN PEMESANAN -->
 <section id="order" class="hidden">
  <div class="panel">
   <button class="back" onclick="backHome()">← Kembali</button>
@@ -199,9 +343,20 @@ button:active{transform:scale(.94);filter:brightness(1.4);transition:.12s}
   <p class="notice">Kamu akan diarahkan ke halaman pembayaran terpisah.</p>
  </div>
 </section>
+
 </main>
 
 <footer>NOLAN TOPUP © 2026</footer>
+
+<!-- TOMBOL WHATSAPP MELAYANG -->
+<a class="whatsapp-float"
+ href="https://wa.me/628138318415?text=Halo%20Admin%20NOLAN%20TOPUP%2C%20saya%20ingin%20bertanya."
+ target="_blank"
+ rel="noopener noreferrer"
+ aria-label="Hubungi Admin WhatsApp">
+ <span class="whatsapp-icon">☏</span>
+ <span>BANTUAN</span>
+</a>
 
 <script>
 const games={
@@ -246,6 +401,71 @@ let selected=null;
 
 const money=n=>"Rp"+n.toLocaleString("id-ID");
 
+/*
+ FLASH SALE:
+ Untuk mengaktifkan hitung mundur, isi tanggal berakhir promo.
+ Contoh format:
+ "2026-12-31T23:59:59"
+
+ Jangan isi tanggal sebelum jadwal promo benar-benar ditentukan.
+*/
+const FLASH_SALE_END="2026-11-17T20:23:10+07:00";
+
+function updateFlashSale(){
+ const description=document.getElementById("flashDescription");
+ const status=document.getElementById("flashStatus");
+ const countdown=document.getElementById("flashCountdown");
+
+ if(!FLASH_SALE_END){
+  description.textContent="Flash sale akan segera hadir. Pantau terus promo terbaru NOLAN TOPUP!";
+  status.textContent="Jadwal dan harga promo belum diaktifkan.";
+  countdown.classList.add("hidden");
+  return;
+ }
+
+ const end=new Date(FLASH_SALE_END).getTime();
+
+ if(!Number.isFinite(end)){
+  status.textContent="Jadwal flash sale belum valid.";
+  countdown.classList.add("hidden");
+  return;
+ }
+
+ const now=Date.now();
+ const distance=end-now;
+
+ if(distance<=0){
+  description.textContent="Flash sale telah berakhir. Tunggu promo berikutnya!";
+  status.textContent="Promo selesai.";
+  countdown.classList.add("hidden");
+  return;
+ }
+
+ countdown.classList.remove("hidden");
+
+ const hours=Math.floor(distance/(1000*60*60));
+ const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+ const seconds=Math.floor((distance%(1000*60))/1000);
+
+ document.getElementById("flashHours").textContent=String(hours).padStart(2,"0");
+ document.getElementById("flashMinutes").textContent=String(minutes).padStart(2,"0");
+ document.getElementById("flashSeconds").textContent=String(seconds).padStart(2,"0");
+
+ description.textContent="Hitung mundur menuju berakhirnya promo flash sale!";
+ status.textContent="Pastikan jadwal dan harga promo sudah ditentukan sebelum mengaktifkan.";
+}
+
+setInterval(updateFlashSale,1000);
+updateFlashSale();
+
+/* LOADING SCREEN */
+window.addEventListener("load",function(){
+ setTimeout(function(){
+  document.getElementById("loadingScreen").classList.add("hide");
+ },450);
+});
+
+/* CARI GAME */
 function searchGames(){
  const q=document.getElementById("gameSearch").value.trim().toLowerCase();
 
@@ -254,6 +474,7 @@ function searchGames(){
  });
 }
 
+/* BUKA GAME */
 function openGame(id){
  currentGame=id;
  selected=null;
@@ -293,6 +514,7 @@ function openGame(id){
  window.scrollTo(0,0);
 }
 
+/* CARI NOMINAL */
 function filterPacks(){
  const q=document.getElementById("packSearch").value.trim().toLowerCase();
 
@@ -301,6 +523,7 @@ function filterPacks(){
  });
 }
 
+/* PILIH NOMINAL */
 function selectPack(index,button){
  selected=games[currentGame].packs[index];
 
@@ -317,6 +540,7 @@ function selectPack(index,button){
  },150);
 }
 
+/* RINGKASAN PESANAN */
 function updateSummary(){
  document.getElementById("summary").textContent=
  selected
@@ -324,6 +548,7 @@ function updateSummary(){
  :"Pilih nominal terlebih dahulu.";
 }
 
+/* PRODUK TERLARIS */
 function updateBestSellers(){
  const target=document.getElementById("bestSellerList");
  let counts={};
@@ -357,84 +582,5 @@ function updateBestSellers(){
  });
 }
 
-function recordPopularProduct(){
- if(!selected||!currentGame)return;
-
- try{
-  const counts=JSON.parse(localStorage.getItem("nolanPopularProducts")||"{}")||{};
-  const key=currentGame+"|"+selected[0];
-
-  counts[key]=(Number(counts[key])||0)+1;
-  localStorage.setItem("nolanPopularProducts",JSON.stringify(counts));
- }catch(e){}
-}
-
-function backHome(){
- document.getElementById("order").classList.add("hidden");
- document.getElementById("catalog").classList.remove("hidden");
-
- updateBestSellers();
- window.scrollTo(0,0);
-}
-
-function continuePayment(){
- const userId=document.getElementById("userId").value.trim();
- const serverId=document.getElementById("serverId").value.trim();
- const buyer=document.getElementById("buyer").value.trim();
-
- if(!userId){alert("Masukkan User ID Bos!");return}
- if(currentGame==="ml"&&!serverId){alert("Masukkan Server ID juga Bos!");return}
- if(!selected){alert("Pilih nominal!");return}
- if(!buyer){alert("Masukkan nama pembeli!");return}
-
- const order={
-  gameId:currentGame,
-  game:games[currentGame].name,
-  userId:userId,
-  serverId:currentGame==="ml"?serverId:"",
-  buyer:buyer,
-  item:selected[0],
-  price:selected[1],
-  orderId:"NL"+Date.now()
- };
-
- try{
-  sessionStorage.setItem("nolanOrder",JSON.stringify(order));
-  recordPopularProduct();
-  window.location.href="payment.html";
- }catch(e){
-  alert("Penyimpanan pesanan gagal. Coba lagi.");
- }
-}
-
-/* EFEK GELOMBANG SENTUHAN */
-document.addEventListener("pointerdown",function(e){
- const target=e.target.closest("button,.game,.pack");
- if(!target)return;
-
- const ripple=document.createElement("span");
- const rect=target.getBoundingClientRect();
-
- ripple.style.cssText=`
-  position:absolute;
-  width:25px;
-  height:25px;
-  border-radius:50%;
-  background:#00e5ff88;
-  pointer-events:none;
-  left:${e.clientX-rect.left-12}px;
-  top:${e.clientY-rect.top-12}px;
-  transform:scale(0);
-  animation:rippleTouch .55s ease-out forwards;
-  z-index:5;
- `;
-
- target.appendChild(ripple);
- setTimeout(()=>ripple.remove(),600);
-});
-
-updateBestSellers();
-</script>
-</body>
- </html>
- 
+/* CATAT PRODUK POPULER */
+function recordPopularPro
