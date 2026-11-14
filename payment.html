@@ -1,14 +1,14 @@
-<!DOCTYPE html><html lang="id">
+
+<!DOCTYPE html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pembayaran - NOLAN TOPUP</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}:root{
---red:#ff1744;
---cyan:#00e5ff;
---dark:#090b14;
-}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--red:#ff1744;--cyan:#00e5ff;--dark:#090b14}
 
 body{
 font-family:Arial,sans-serif;
@@ -34,11 +34,7 @@ color:var(--cyan);
 text-shadow:0 0 8px var(--cyan),0 0 18px #00e5ff88;
 }
 
-main{
-max-width:600px;
-margin:auto;
-padding:18px;
-}
+main{max-width:600px;margin:auto;padding:18px}
 
 h2{
 font-size:19px;
@@ -48,11 +44,7 @@ padding-left:11px;
 text-shadow:0 0 9px #ff174455;
 }
 
-.muted{
-color:#aabbd2;
-font-size:13px;
-line-height:1.7;
-}
+.muted{color:#aabbd2;font-size:13px;line-height:1.7}
 
 .rowline{
 display:flex;
@@ -63,18 +55,9 @@ border-bottom:1px solid #293950;
 font-size:13px;
 }
 
-.rowline:last-child{
-border:0;
-}
-
-.rowline span{
-color:#aabbd2;
-}
-
-.rowline strong{
-text-align:right;
-overflow-wrap:anywhere;
-}
+.rowline:last-child{border:0}
+.rowline span{color:#aabbd2}
+.rowline strong{text-align:right;overflow-wrap:anywhere}
 
 .total{
 color:var(--cyan);
@@ -116,23 +99,10 @@ background:#103147;
 box-shadow:0 0 13px #00e5ff66;
 }
 
-.method strong{
-display:block;
-font-size:16px;
-}
-
-.method small{
-color:#aabbd2;
-font-size:11px;
-}
-
-.content{
-margin-top:18px;
-}
-
-.hidden{
-display:none!important;
-}
+.method strong{display:block;font-size:16px}
+.method small{color:#aabbd2;font-size:11px}
+.content{margin-top:18px}
+.hidden{display:none!important}
 
 .number{
 font-size:23px;
@@ -159,9 +129,7 @@ width:100%;
 margin-top:8px;
 }
 
-.copy:hover{
-box-shadow:0 0 12px #00e5ff77;
-}
+.copy:hover{box-shadow:0 0 12px #00e5ff77}
 
 .primary{
 background:linear-gradient(90deg,var(--red),#a900ff);
@@ -216,52 +184,125 @@ font-size:11px;
 border-top:1px solid #263750;
 margin-top:25px;
 }
-</style>
 
+.promo-row{
+display:flex;
+gap:8px;
+margin-top:10px;
+}
+
+.promo-row input{
+flex:1;
+min-width:0;
+padding:13px;
+background:#0a1020;
+border:1px solid #354966;
+border-radius:9px;
+color:white;
+outline:none;
+text-transform:uppercase;
+}
+
+.promo-row button{
+background:#173744;
+color:var(--cyan);
+border:1px solid var(--cyan);
+padding:0 16px;
+}
+
+.promo-status{
+font-size:12px;
+line-height:1.6;
+margin-top:8px;
+color:#a9b8ce;
+}
+</style>
 </head>
-<body><header>
+
+<body>
+<header>
  <div class="logo">NOLAN TOPUP</div>
-</header><main>
+</header>
+
+<main>
  <h2 style="margin-top:15px">💳 HALAMAN PEMBAYARAN</h2>
- <p class="muted">Selesaikan pembayaran pesanan kamu.</p> <section class="panel">
+ <p class="muted">Selesaikan pembayaran pesanan kamu.</p>
+
+ <section class="panel">
   <h2>Detail Pesanan</h2>
   <div id="details"></div>
- </section> <section class="panel">
-  <h2>Pilih Metode Pembayaran</h2>  <div class="methods">
+
+  <div style="margin-top:15px">
+   <p class="muted">Punya kode promo? Masukkan di bawah ini.</p>
+
+   <div class="promo-row">
+    <input id="promoCode" placeholder="Masukkan kode promo" autocomplete="off" maxlength="20">
+    <button onclick="applyPromo()">PAKAI</button>
+   </div>
+
+   <p id="promoStatus" class="promo-status">Gunakan kode NOLAN10 untuk diskon 10%.</p>
+  </div>
+ </section>
+
+ <section class="panel">
+  <h2>Pilih Metode Pembayaran</h2>
+
+  <div class="methods">
    <button class="method active" id="danaBtn" onclick="choose('dana')">
     <strong>DANA</strong>
     <small>E-wallet</small>
    </button>
+
    <button class="method" id="qrisBtn" onclick="choose('qris')">
     <strong>QRIS</strong>
     <small>Scan kode QR</small>
    </button>
-  </div>  <div id="danaContent" class="content">
+  </div>
+
+  <div id="danaContent" class="content">
    <p class="muted">Transfer ke nomor DANA berikut:</p>
    <div class="number" id="danaNumber">0895396001313</div>
    <button class="copy" onclick="copyDana()">SALIN NOMOR DANA</button>
    <p class="notice">Pastikan nama penerima dan jumlah pembayaran sudah benar sebelum transfer.</p>
-  </div>  <div id="qrisContent" class="content hidden">
-   <p class="muted" style="text-align:center">Scan QRIS di bawah menggunakan aplikasi pembayaran yang mendukung QRIS.</p><img class="qris" src="qris.jpg" alt="QRIS Nolan Topup"
-onerror="this.style.display='none';document.getElementById('qrisError').style.display='block'">
+  </div>
+
+  <div id="qrisContent" class="content hidden">
+   <p class="muted" style="text-align:center">Scan QRIS di bawah menggunakan aplikasi pembayaran yang mendukung QRIS.</p>
+
+   <img class="qris" src="qris.jpg" alt="QRIS Nolan Topup"
+   onerror="this.style.display='none';document.getElementById('qrisError').style.display='block'">
 
    <p id="qrisError" class="notice" style="display:none;text-align:center;color:#ffbd68">
     Gambar QRIS belum dipasang. Tambahkan file qris.jpg ke repository GitHub.
-   </p>   <p class="notice">Periksa nominal dan nama merchant sebelum membayar. Jika QRIS tidak menampilkan nominal otomatis, masukkan jumlah yang tertera pada ringkasan pesanan.</p>
+   </p>
+
+   <p class="notice">Periksa nominal dan nama merchant sebelum membayar. Jika QRIS tidak menampilkan nominal otomatis, masukkan jumlah yang tertera pada ringkasan pesanan.</p>
   </div>
- </section> <section class="panel">
+ </section>
+
+ <section class="panel">
   <h2>Konfirmasi Pesanan</h2>
   <p class="muted">Setelah transfer berhasil, tekan tombol di bawah untuk mengirim detail pesanan kepada admin.</p>
+
   <button class="primary" onclick="confirmOrder()">KONFIRMASI VIA WHATSAPP</button>
+
   <p class="notice">Admin akan memeriksa pembayaran secara manual. Pesanan belum dianggap lunas sebelum pembayaran diverifikasi.</p>
+
   <button class="back" onclick="history.back()">← KEMBALI KE TOKO</button>
  </section>
-</main><footer>NOLAN TOPUP © 2026</footer><script>
+</main>
+
+<footer>NOLAN TOPUP © 2026</footer>
+
+<script>
 const DANA_NUMBER="0895396001313";
 const ADMIN_WA="628138318415";
 
 let order=null;
 let paymentMethod="dana";
+let promoApplied=false;
+let discount=0;
+let totalPayment=0;
 
 function rupiah(n){
  return "Rp"+Number(n).toLocaleString("id-ID");
@@ -306,18 +347,83 @@ if(!order||!order.game||!order.userId||!order.price){
   details.appendChild(row);
  });
 
- const total=document.createElement("div");
- total.className="rowline";
+ const subtotalRow=document.createElement("div");
+ subtotalRow.className="rowline";
 
- const label=document.createElement("strong");
- label.textContent="TOTAL PEMBAYARAN";
+ const subtotalLabel=document.createElement("span");
+ subtotalLabel.textContent="Subtotal";
 
- const value=document.createElement("strong");
- value.className="total";
- value.textContent=rupiah(order.price);
+ const subtotalValue=document.createElement("strong");
+ subtotalValue.textContent=rupiah(order.price);
 
- total.append(label,value);
- details.appendChild(total);
+ subtotalRow.append(subtotalLabel,subtotalValue);
+ details.appendChild(subtotalRow);
+
+ const discountRow=document.createElement("div");
+ discountRow.className="rowline";
+
+ const discountLabel=document.createElement("span");
+ discountLabel.textContent="Diskon promo";
+
+ const discountValue=document.createElement("strong");
+ discountValue.id="discountValue";
+ discountValue.textContent="-"+rupiah(0);
+
+ discountRow.append(discountLabel,discountValue);
+ details.appendChild(discountRow);
+
+ const totalRow=document.createElement("div");
+ totalRow.className="rowline";
+
+ const totalLabel=document.createElement("strong");
+ totalLabel.textContent="TOTAL PEMBAYARAN";
+
+ const totalValue=document.createElement("strong");
+ totalValue.className="total";
+ totalValue.id="totalValue";
+ totalValue.textContent=rupiah(order.price);
+
+ totalRow.append(totalLabel,totalValue);
+ details.appendChild(totalRow);
+
+ totalPayment=Number(order.price);
+}
+
+function applyPromo(){
+ if(!order)return;
+
+ const input=document.getElementById("promoCode");
+ const status=document.getElementById("promoStatus");
+ const code=input.value.trim().toUpperCase();
+
+ if(code==="NOLAN10"){
+  promoApplied=true;
+  discount=Math.floor(Number(order.price)*0.10);
+  totalPayment=Math.max(0,Number(order.price)-discount);
+
+  status.textContent="Kode promo berhasil digunakan! Diskon 10% aktif.";
+  status.style.color="#55e6a5";
+ }else{
+  promoApplied=false;
+  discount=0;
+  totalPayment=Number(order.price);
+
+  status.textContent=code
+   ?"Kode promo tidak valid. Periksa kembali kode yang dimasukkan."
+   :"Masukkan kode promo terlebih dahulu.";
+
+  status.style.color="#ffbd68";
+ }
+
+ updateTotals();
+}
+
+function updateTotals(){
+ const discountValue=document.getElementById("discountValue");
+ const totalValue=document.getElementById("totalValue");
+
+ if(discountValue)discountValue.textContent="-"+rupiah(discount);
+ if(totalValue)totalValue.textContent=rupiah(totalPayment);
 }
 
 function choose(method){
@@ -343,6 +449,10 @@ function copyDana(){
 function confirmOrder(){
  if(!order)return;
 
+ const promoLine=promoApplied
+  ?"Kode promo: NOLAN10 (diskon 10%)\nDiskon: "+rupiah(discount)+"\n"
+  :"Kode promo: Tidak digunakan\n";
+
  const message=
 `HALO NOLAN TOPUP!
 Saya ingin konfirmasi pesanan:
@@ -352,7 +462,8 @@ Nama: ${order.buyer}
 Game: ${order.game}
 User ID: ${order.userId}
 ${order.serverId?"Server ID: "+order.serverId+"\n":""}Nominal: ${order.item}
-Total: ${rupiah(order.price)}
+Subtotal: ${rupiah(order.price)}
+${promoLine}TOTAL PEMBAYARAN: ${rupiah(totalPayment)}
 
 Metode pembayaran: ${paymentMethod.toUpperCase()}
 Nomor DANA: ${DANA_NUMBER}
@@ -364,5 +475,6 @@ Mohon verifikasi pesanan saya.`;
  const url="https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(message);
  window.open(url,"_blank");
 }
-</script></body>
- </html>
+</script>
+</body>
+</html>
