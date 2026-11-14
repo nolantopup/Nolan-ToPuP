@@ -3,41 +3,39 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NOLAN TOPUP - Game Store</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#090d18;color:white}
-header{padding:20px;background:#10182a;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #263653}
-.logo{font-size:23px;font-weight:900;color:#00e5ff}
-header span{font-size:11px;color:#aab8d0}
-.container{max-width:1000px;margin:auto;padding:20px}
-.hero{padding:25px;background:linear-gradient(120deg,#102e50,#32165c);border-radius:18px;margin-bottom:25px}
-.hero h1{font-size:25px;margin-bottom:8px}
-.hero p{color:#b9c9df;font-size:13px}
-.section-title{font-size:19px;margin:25px 0 15px}
+body{background:#090e19;color:white;font-family:Arial,sans-serif}
+header{background:#111b2e;padding:19px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #263750}
+.logo{font-size:23px;font-weight:900;color:#00d9ff}
+header small{color:#9babc4}
+main{max-width:950px;margin:auto;padding:18px}
+.hero{padding:25px;border-radius:16px;background:linear-gradient(120deg,#123b62,#391b60);margin-bottom:25px}
+.hero h1{font-size:25px;margin-bottom:9px}
+.hero p,.muted{color:#b7c5d9;font-size:13px;line-height:1.6}
+h2{font-size:19px;margin:23px 0 15px}
 .games{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
-.game{background:#141e30;border:1px solid #263750;border-radius:14px;overflow:hidden;cursor:pointer;transition:.2s}
-.game:active{transform:scale(.97)}
-.game img{width:100%;height:115px;object-fit:cover;background:#263750}
-.game-info{padding:12px}
-.game-info h3{font-size:15px}
-.game-info p{font-size:11px;color:#aab8d0;margin-top:5px}
-.game-info button,.main-btn{width:100%;border:0;background:#00c9e8;color:#07101b;padding:12px;border-radius:9px;font-weight:bold;margin-top:12px;cursor:pointer}
-.panel{background:#141e30;border:1px solid #293a56;border-radius:15px;padding:18px;margin-top:18px}
-.hidden{display:none}
-.back{background:#27364e;color:white;border:0;padding:10px 14px;border-radius:8px;margin-bottom:15px}
-input,select{width:100%;padding:13px;background:#0b1322;color:white;border:1px solid #354760;border-radius:9px;margin:8px 0 15px;outline:none}
-label{font-size:13px;color:#c5d2e5}
-.packages{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:10px 0 18px}
-.package{background:#0c1728;border:1px solid #354760;padding:13px;border-radius:10px;cursor:pointer}
-.package.active{border:2px solid #00d9ff;background:#102b3d}
-.package strong{display:block;font-size:14px}
-.package small{color:#00e5ff;display:block;margin-top:6px}
-.summary{background:#0b1423;padding:14px;border-radius:10px;font-size:13px;line-height:2}
-.notice{font-size:12px;color:#aebdd2;line-height:1.6;margin-top:12px}
-.pay-number{font-size:21px;font-weight:bold;color:#00e5ff;margin:10px 0}
-footer{text-align:center;padding:30px;color:#8293ad;font-size:11px}
+.game{background:#151f32;border:1px solid #293c58;border-radius:13px;overflow:hidden;cursor:pointer}
+.game img{width:100%;height:115px;object-fit:cover;display:block}
+.info{padding:12px}
+.info h3{font-size:15px}
+.info p{font-size:12px;color:#aabbd2;margin-top:5px}
+button{cursor:pointer;border:0;border-radius:9px;padding:13px;font-weight:bold}
+.game button,.primary{background:#00d9ef;color:#07121d;width:100%;margin-top:12px}
+.panel{background:#141f32;border:1px solid #2a3c57;padding:18px;border-radius:14px;margin-top:15px}
+.hidden{display:none!important}
+.back{background:#293a54;color:white;margin-bottom:15px}
+label{font-size:13px;color:#c5d2e5;display:block;margin-top:15px}
+input,select{width:100%;padding:13px;background:#0a1425;border:1px solid #354966;border-radius:9px;color:white;margin-top:7px}
+.packages{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.pack{padding:13px;background:#0c1729;border:1px solid #344964;border-radius:10px;color:white;text-align:left}
+.pack.active{border:2px solid #00dcff;background:#102d41}
+.pack b{display:block;font-size:14px}
+.pack small{display:block;color:#00dcff;margin-top:7px}
+.notice{font-size:12px;color:#9eafc6;line-height:1.6;margin-top:12px}
+footer{text-align:center;color:#7588a5;font-size:12px;padding:30px}
 @media(min-width:650px){.games{grid-template-columns:repeat(4,1fr)}.packages{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
@@ -45,51 +43,51 @@ footer{text-align:center;padding:30px;color:#8293ad;font-size:11px}
 
 <header>
  <div class="logo">NOLAN TOPUP</div>
- <span>GAME STORE</span>
+ <small>GAME STORE</small>
 </header>
 
-<main class="container">
+<main>
  <section class="hero">
   <h1>TOP UP GAME FAVORITMU!</h1>
-  <p>Pilih game, pilih nominal, bayar, dan konfirmasi pesananmu.</p>
+  <p>Murah, mudah, dan praktis. Pilih game favoritmu sekarang.</p>
  </section>
 
  <section id="catalog">
-  <h2 class="section-title">🎮 PILIH GAME</h2>
+  <h2>🎮 PILIH GAME</h2>
   <div class="games">
 
    <div class="game" onclick="openGame('ml')">
     <img src="https://placehold.co/500x300/172b52/ffffff?text=MOBILE+LEGENDS" alt="Mobile Legends">
-    <div class="game-info">
+    <div class="info">
      <h3>Mobile Legends</h3>
-     <p>Diamond Mobile Legends</p>
+     <p>Diamond</p>
      <button>TOP UP</button>
     </div>
    </div>
 
    <div class="game" onclick="openGame('ff')">
     <img src="https://placehold.co/500x300/45251c/ffffff?text=FREE+FIRE" alt="Free Fire">
-    <div class="game-info">
+    <div class="info">
      <h3>Free Fire</h3>
-     <p>Diamond Free Fire</p>
+     <p>Diamond</p>
      <button>TOP UP</button>
     </div>
    </div>
 
    <div class="game" onclick="openGame('pubg')">
     <img src="https://placehold.co/500x300/343321/ffffff?text=PUBG+MOBILE" alt="PUBG Mobile">
-    <div class="game-info">
+    <div class="info">
      <h3>PUBG Mobile</h3>
-     <p>UC PUBG Mobile</p>
+     <p>UC</p>
      <button>TOP UP</button>
     </div>
    </div>
 
    <div class="game" onclick="openGame('hok')">
     <img src="https://placehold.co/500x300/263d50/ffffff?text=HONOR+OF+KINGS" alt="Honor of Kings">
-    <div class="game-info">
+    <div class="info">
      <h3>Honor of Kings</h3>
-     <p>Token Honor of Kings</p>
+     <p>Token</p>
      <button>TOP UP</button>
     </div>
    </div>
@@ -99,169 +97,129 @@ footer{text-align:center;padding:30px;color:#8293ad;font-size:11px}
 
  <section id="order" class="hidden">
   <div class="panel">
-   <button class="back" onclick="backHome()">← Kembali ke toko</button>
-   <h2 id="gameTitle">Top Up</h2>
-   <p class="notice">Masukkan data akun game dengan benar.</p>
+   <button class="back" onclick="backHome()">← Kembali</button>
+   <h2 id="gameTitle">PESANAN</h2>
+   <p class="muted">Masukkan data akun game dengan benar.</p>
 
    <label>User ID / Player ID</label>
-   <input id="userId" placeholder="Masukkan User ID">
+   <input id="userId" placeholder="Masukkan User ID" autocomplete="off">
 
    <div id="serverArea">
-    <label>Server ID (jika diperlukan)</label>
-    <input id="serverId" placeholder="Masukkan Server ID">
+    <label>Server ID</label>
+    <input id="serverId" placeholder="Masukkan Server ID" autocomplete="off">
    </div>
 
-   <h3 class="section-title">Pilih Nominal</h3>
+   <h2>PILIH NOMINAL</h2>
    <div class="packages" id="packages"></div>
 
    <label>Nama pembeli</label>
-   <input id="buyer" placeholder="Nama kamu">
+   <input id="buyer" placeholder="Masukkan nama pembeli" autocomplete="name">
 
-   <h3 class="section-title">Metode Pembayaran</h3>
    <div class="panel">
-    <label>
-     <input type="radio" checked disabled style="width:auto;margin:0 7px 0 0">
-     DANA
-    </label>
-    <p class="pay-number">0895396001313</p>
-    <p class="notice">Transfer sesuai total harga pesanan. Pastikan nomor tujuan benar.</p>
+    <p class="muted">Ringkasan pesanan</p>
+    <p id="summary" style="line-height:2;margin-top:8px">Pilih nominal terlebih dahulu.</p>
    </div>
 
-   <h3 class="section-title">Ringkasan Pesanan</h3>
-   <div class="summary" id="summary">
-    Game: -<br>
-    Nominal: -<br>
-    Total: -
-   </div>
-
-   <button class="main-btn" onclick="checkout()">LANJUTKAN PESANAN</button>
-   <p class="notice">Pesanan akan dikirim ke WhatsApp admin untuk konfirmasi pembayaran.</p>
+   <button class="primary" onclick="continuePayment()">LANJUT KE PEMBAYARAN →</button>
+   <p class="notice">Kamu akan diarahkan ke halaman pembayaran terpisah.</p>
   </div>
  </section>
 </main>
 
-<footer>
- NOLAN TOPUP © 2026<br>
- Game Store • Top Up Aman dan Mudah
-</footer>
+<footer>NOLAN TOPUP © 2026</footer>
 
 <script>
-// ================================
-// PENGATURAN TOKO
-// ================================
-
-// Nomor DANA penerima
-const DANA_NUMBER = "0895396001313";
-
-// Ganti dengan nomor WhatsApp admin.
-// Gunakan format 62xxxxxxxxxxx tanpa tanda +.
-const ADMIN_WA = "628138318415";
-
-// HARGA CONTOH: sesuaikan sebelum toko dipublikasikan.
-const games = {
+const games={
  ml:{
   name:"Mobile Legends",
   packs:[
-   ["86 Diamond",20000],
-   ["172 Diamond",39000],
-   ["257 Diamond",57000],
-   ["344 Diamond",76000],
-   ["429 Diamond",95000],
-   ["514 Diamond",114000],
-   ["706 Diamond",152000],
-   ["878 Diamond",190000],
+   ["86 Diamond",20000],["172 Diamond",39000],
+   ["257 Diamond",57000],["344 Diamond",76000],
+   ["429 Diamond",95000],["514 Diamond",114000],
+   ["706 Diamond",152000],["878 Diamond",190000],
    ["1412 Diamond",300000]
   ]
  },
  ff:{
   name:"Free Fire",
   packs:[
-   ["70 Diamond",10000],
-   ["140 Diamond",20000],
-   ["355 Diamond",50000],
-   ["720 Diamond",100000],
-   ["1450 Diamond",200000],
-   ["2180 Diamond",300000]
+   ["70 Diamond",10000],["140 Diamond",20000],
+   ["355 Diamond",50000],["720 Diamond",100000],
+   ["1450 Diamond",200000],["2180 Diamond",300000]
   ]
  },
  pubg:{
   name:"PUBG Mobile",
   packs:[
-   ["60 UC",16000],
-   ["325 UC",79000],
-   ["660 UC",159000],
-   ["1800 UC",399000],
+   ["60 UC",16000],["325 UC",79000],
+   ["660 UC",159000],["1800 UC",399000],
    ["3850 UC",799000]
   ]
  },
  hok:{
   name:"Honor of Kings",
   packs:[
-   ["80 Token",16000],
-   ["240 Token",45000],
-   ["400 Token",75000],
-   ["800 Token",149000],
+   ["80 Token",16000],["240 Token",45000],
+   ["400 Token",75000],["800 Token",149000],
    ["1200 Token",220000]
   ]
  }
 };
 
-let currentGame = "";
-let selectedPack = null;
+let currentGame="";
+let selected=null;
 
-const rupiah = n => "Rp"+n.toLocaleString("id-ID");
+const money=n=>"Rp"+n.toLocaleString("id-ID");
 
 function openGame(id){
  currentGame=id;
- selectedPack=null;
+ selected=null;
 
  document.getElementById("catalog").classList.add("hidden");
  document.getElementById("order").classList.remove("hidden");
 
- document.getElementById("gameTitle").textContent=
- "Top Up "+games[id].name;
-
+ document.getElementById("gameTitle").textContent="TOP UP "+games[id].name;
  document.getElementById("userId").value="";
  document.getElementById("serverId").value="";
  document.getElementById("buyer").value="";
 
- // ML membutuhkan User ID dan Server ID.
  document.getElementById("serverArea").style.display=
  id==="ml"?"block":"none";
 
  const area=document.getElementById("packages");
- area.innerHTML="";
+ area.replaceChildren();
 
  games[id].packs.forEach((pack,index)=>{
-  const el=document.createElement("div");
-  el.className="package";
-  el.innerHTML=
-   `<strong>${pack[0]}</strong><small>${rupiah(pack[1])}</small>`;
-  el.onclick=()=>selectPack(index,el);
-  area.appendChild(el);
+  const button=document.createElement("button");
+  button.className="pack";
+  const name=document.createElement("b");
+  name.textContent=pack[0];
+  const price=document.createElement("small");
+  price.textContent=money(pack[1]);
+  button.append(name,price);
+  button.onclick=()=>selectPack(index,button);
+  area.appendChild(button);
  });
 
  updateSummary();
  window.scrollTo(0,0);
 }
 
-function selectPack(index,element){
- selectedPack=games[currentGame].packs[index];
+function selectPack(index,button){
+ selected=games[currentGame].packs[index];
 
- document.querySelectorAll(".package").forEach(el=>
+ document.querySelectorAll(".pack").forEach(el=>
   el.classList.remove("active")
  );
-
- element.classList.add("active");
+ button.classList.add("active");
  updateSummary();
 }
 
 function updateSummary(){
- const pack=selectedPack;
- document.getElementById("summary").innerHTML=
- `Game: ${games[currentGame].name}<br>
- Nominal: ${pack?pack[0]:"Belum dipilih"}<br>
- Total: ${pack?rupiah(pack[1]):"-"}`;
+ document.getElementById("summary").textContent=
+ selected
+ ?games[currentGame].name+" | "+selected[0]+" | "+money(selected[1])
+ :"Pilih nominal terlebih dahulu.";
 }
 
 function backHome(){
@@ -270,59 +228,33 @@ function backHome(){
  window.scrollTo(0,0);
 }
 
-function checkout(){
+function continuePayment(){
  const userId=document.getElementById("userId").value.trim();
  const serverId=document.getElementById("serverId").value.trim();
  const buyer=document.getElementById("buyer").value.trim();
 
- if(!userId){
-  alert("Masukkan User ID terlebih dahulu!");
-  return;
+ if(!userId){alert("Masukkan User ID!");return}
+ if(currentGame==="ml"&&!serverId){alert("Masukkan Server ID!");return}
+ if(!selected){alert("Pilih nominal!");return}
+ if(!buyer){alert("Masukkan nama pembeli!");return}
+
+ const order={
+  gameId:currentGame,
+  game:games[currentGame].name,
+  userId:userId,
+  serverId:currentGame==="ml"?serverId:"",
+  buyer:buyer,
+  item:selected[0],
+  price:selected[1],
+  orderId:"NL"+Date.now()
+ };
+
+ try{
+  sessionStorage.setItem("nolanOrder",JSON.stringify(order));
+  window.location.href="payment.html";
+ }catch(e){
+  alert("Penyimpanan pesanan gagal. Coba lagi.");
  }
-
- if(currentGame==="ml"&&!serverId){
-  alert("Masukkan Server ID Mobile Legends!");
-  return;
- }
-
- if(!selectedPack){
-  alert("Pilih nominal top up terlebih dahulu!");
-  return;
- }
-
- if(!buyer){
-  alert("Masukkan nama pembeli!");
-  return;
- }
-
- if(!ADMIN_WA){
-  alert("628138318415.");
-  return;
- }
-
- const total=selectedPack[1];
-
- const message=
-`HALO NOLAN TOPUP!
-Saya ingin memesan:
-
-Game: ${games[currentGame].name}
-User ID: ${userId}
-${currentGame==="ml"?"Server ID: "+serverId:""}
-Nominal: ${selectedPack[0]}
-Nama: ${buyer}
-Total: ${rupiah(total)}
-
-Metode pembayaran: DANA
-Nomor DANA: ${DANA_NUMBER}
-
-Mohon konfirmasi pesanan saya.
-Saya akan mengirim bukti transfer setelah pembayaran.`;
-
- const url="https://wa.me/"+ADMIN_WA+
- "?text="+encodeURIComponent(message);
-
- window.open(url,"_blank");
 }
 </script>
 </body>
