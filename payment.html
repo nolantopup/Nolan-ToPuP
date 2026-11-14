@@ -203,6 +203,10 @@ outline:none;
 text-transform:uppercase;
 }
 
+.promo-row input:focus{
+border-color:var(--cyan);
+}
+
 .promo-row button{
 background:#173744;
 color:var(--cyan);
@@ -240,7 +244,9 @@ color:#a9b8ce;
     <button onclick="applyPromo()">PAKAI</button>
    </div>
 
-   <p id="promoStatus" class="promo-status">Gunakan kode NOLAN10 untuk diskon 10%.</p>
+   <p id="promoStatus" class="promo-status">
+    Tersedia diskon 6% dan 7%. Khusus produk Diamond (DM).
+   </p>
   </div>
  </section>
 
@@ -298,10 +304,17 @@ color:#a9b8ce;
 const DANA_NUMBER="0895396001313";
 const ADMIN_WA="628138318415";
 
+const PROMOS={
+ "NOLAN07":7,
+ "NOLAN|NTG006,":6
+};
+
 let order=null;
 let paymentMethod="dana";
 let promoApplied=false;
+let appliedPromoCode="";
 let discount=0;
+let discountPercent=0;
 let totalPayment=0;
 
 function rupiah(n){
@@ -389,6 +402,27 @@ if(!order||!order.game||!order.userId||!order.price){
  totalPayment=Number(order.price);
 }
 
+function isDiamondProduct(){
+ const item=String(order?.item||"");
+
+ // WDP dan Membership tidak boleh mendapatkan diskon.
+ if(/wdp|weekly\s*diamond|membership/i.test(item)){
+  return false;
+ }
+
+ // Hanya produk yang namanya mengandung Diamond atau DM.
+ return /diamond|\bdm\b/i.test(item);
+}
+
+function resetPromo(){
+ promoApplied=false;
+ appliedPromoCode="";
+ discount=0;
+ discountPercent=0;
+ totalPayment=Number(order.price);
+ updateTotals();
+}
+
 function applyPromo(){
  if(!order)return;
 
@@ -396,24 +430,35 @@ function applyPromo(){
  const status=document.getElementById("promoStatus");
  const code=input.value.trim().toUpperCase();
 
- if(code==="NOLAN10"){
-  promoApplied=true;
-  discount=Math.floor(Number(order.price)*0.10);
-  totalPayment=Math.max(0,Number(order.price)-discount);
-
-  status.textContent="Kode promo berhasil digunakan! Diskon 10% aktif.";
-  status.style.color="#55e6a5";
- }else{
-  promoApplied=false;
-  discount=0;
-  totalPayment=Number(order.price);
-
-  status.textContent=code
-   ?"Kode promo tidak valid. Periksa kembali kode yang dimasukkan."
-   :"Masukkan kode promo terlebih dahulu.";
-
+ if(!code){
+  resetPromo();
+  status.textContent="Masukkan kode promo terlebih dahulu.";
   status.style.color="#ffbd68";
+  return;
  }
+
+ if(!Object.prototype.hasOwnProperty.call(PROMOS,code)){
+  resetPromo();
+  status.textContent="Kode promo tidak valid. Periksa kembali kode yang dimasukkan.";
+  status.style.color="#ffbd68";
+  return;
+ }
+
+ if(!isDiamondProduct()){
+  resetPromo();
+  status.textContent="Kode promo hanya berlaku untuk Diamond (DM), tidak berlaku untuk WDP atau Membership.";
+  status.style.color="#ffbd68";
+  return;
+ }
+
+ discountPercent=PROMOS[code];
+ discount=Math.floor(Number(order.price)*discountPercent/100);
+ totalPayment=Math.max(0,Number(order.price)-discount);
+ promoApplied=true;
+ appliedPromoCode=code;
+
+ status.textContent="Berhasil! Diskon "+discountPercent+"% aktif untuk produk Diamond.";
+ status.style.color="#55e6a5";
 
  updateTotals();
 }
@@ -450,7 +495,7 @@ function confirmOrder(){
  if(!order)return;
 
  const promoLine=promoApplied
-  ?"Kode promo: NOLAN10 (diskon 10%)\nDiskon: "+rupiah(discount)+"\n"
+  ?"Kode promo: "+appliedPromoCode+"\nDiskon: "+discountPercent+"%\nPotongan: "+rupiah(discount)+"\n"
   :"Kode promo: Tidak digunakan\n";
 
  const message=
