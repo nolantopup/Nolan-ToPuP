@@ -272,7 +272,7 @@ button:active{transform:scale(.94);filter:brightness(1.4);transition:.12s}
   <div class="game" data-game="ml" onclick="openGame('ml')">
    <img src="https://placehold.co/500x300/172b52/ffffff?text=MOBILE+LEGENDS" alt="Mobile Legends">
    <div class="info">
-    <h3>💎Mobile Legends💎</h3>
+    <h3>Mobile Legends💎</h3>
     <p>Diamond</p>
     <button>KLIK</button>
    </div>
@@ -299,7 +299,7 @@ button:active{transform:scale(.94);filter:brightness(1.4);transition:.12s}
   <div class="game" data-game="hok" onclick="openGame('hok')">
    <img src="https://placehold.co/500x300/263d50/ffffff?text=HONOR+OF+KINGS" alt="Honor of Kings">
    <div class="info">
-    <h3>💎Honor of Kings💎</h3>
+    <h3>Honor of Kings💎</h3>
     <p>Token</p>
     <button>KLIK</button>
    </div>
@@ -459,11 +459,16 @@ setInterval(updateFlashSale,1000);
 updateFlashSale();
 
 /* LOADING SCREEN */
-window.addEventListener("load",function(){
- setTimeout(function(){
-  document.getElementById("loadingScreen").classList.add("hide");
- },450);
-});
+function hideLoading(){
+ const screen=document.getElementById("loadingScreen");
+ if(screen){
+  screen.classList.add("hide");
+ }
+}
+
+window.addEventListener("load",hideLoading);
+
+setTimeout(hideLoading,3000);
 
 /* CARI GAME */
 function searchGames(){
