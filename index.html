@@ -1,1 +1,196 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOLAN TOPUP</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#090713;color:#fff}
+header{padding:22px 6%;background:#120d20;border-bottom:1px solid #302044}
+.logo{font-size:23px;font-weight:900}
+.logo span{color:#a879ff}
+.hero{text-align:center;padding:45px 15px;background:radial-gradient(ellipse at top,#45236a,#090713 70%)}
+.hero h1{font-size:36px;margin-bottom:12px}
+.hero h1 span{color:#b78aff}
+.hero p{color:#c0b5d1;font-size:13px;line-height:1.7}
+.container{width:min(680px,92%);margin:25px auto}
+.card{background:#171126;border:1px solid #33234a;border-radius:16px;padding:20px;margin-bottom:17px}
+h2{font-size:17px;margin-bottom:16px}
+.games,.packages{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.option{background:#241b35;border:1px solid #45315e;padding:15px 8px;border-radius:11px;text-align:center;cursor:pointer}
+.option.active{border-color:#a879ff;background:#382453}
+.option small{display:block;color:#bca9d5;margin-top:6px}
+input{width:100%;padding:14px;border-radius:9px;background:#0d0917;color:white;border:1px solid #49345e;margin-top:8px}
+label{display:block;font-size:13px;margin-top:14px;color:#d8cde8}
+button{cursor:pointer;border:0}
+.primary{width:100%;padding:15px;background:linear-gradient(100deg,#8150ed,#c13bd9);color:white;font-weight:bold;border-radius:10px;font-size:14px;margin-top:17px}
+.muted{font-size:12px;color:#b9aecb;line-height:1.7;margin-top:12px}
+.payment{background:#211735;border:1px solid #67448f;border-radius:13px;padding:17px;text-align:center}
+.payment-title{color:#bca0ff;font-weight:bold;font-size:14px}
+.number{font-size:24px;font-weight:900;letter-spacing:1px;margin:13px 0}
+.copy{padding:11px 20px;background:#6d43c3;color:white;border-radius:8px;font-weight:bold}
+.summary{font-size:13px;line-height:2;color:#e1d8ef}
+footer{text-align:center;color:#827792;padding:25px;font-size:12px}
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">NOLAN <span>TOPUP</span></div>
+</header>
+
+<section class="hero">
+  <h1>TOP UP <span>GAME</span></h1>
+  <p>Top up game favoritmu dengan mudah.<br>Pesan dan lakukan pembayaran melalui website.</p>
+</section>
+
+<main class="container">
+
+<section class="card">
+  <h2>🎮 1. Pilih Game</h2>
+  <div class="games">
+    <div class="option active" data-game="Mobile Legends" onclick="selectGame(this)">⚔️<br>Mobile Legends</div>
+    <div class="option" data-game="Free Fire" onclick="selectGame(this)">🔥<br>Free Fire</div>
+    <div class="option" data-game="PUBG Mobile" onclick="selectGame(this)">🎯<br>PUBG Mobile</div>
+    <div class="option" data-game="Roblox" onclick="selectGame(this)">🧱<br>Roblox</div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>📝 2. Data Akun</h2>
+  <label>User ID / Username</label>
+  <input id="player" placeholder="Masukkan ID atau username">
+  <div id="serverBox">
+    <label>Zone ID Mobile Legends</label>
+    <input id="server" placeholder="Masukkan Zone ID">
+  </div>
+</section>
+
+<section class="card">
+  <h2>💎 3. Pilih Nominal</h2>
+  <div class="packages" id="packages"></div>
+  <p class="muted">Harga akan dikonfirmasi admin sebelum pembayaran. Jangan transfer sebelum total pembayaran disetujui.</p>
+</section>
+
+<section class="card">
+  <h2>💳 4. Pembayaran DANA</h2>
+  <div class="payment">
+    <div class="payment-title">BAYAR MELALUI DANA</div>
+    <div style="font-size:35px;margin:10px">💙</div>
+    <div class="number" id="danaNumber">0895396001313</div>
+    <button class="copy" onclick="copyDana()">📋 SALIN NOMOR DANA</button>
+    <p class="muted">Transfer sesuai nominal yang sudah dikonfirmasi admin. Pastikan nama penerima sesuai sebelum melanjutkan pembayaran.</p>
+  </div>
+</section>
+
+<section class="card">
+  <h2>📦 5. Ringkasan Pesanan</h2>
+  <div class="summary" id="summary"></div>
+  <button class="primary" onclick="sendOrder()">KONFIRMASI PESANAN VIA WHATSAPP</button>
+  <p class="muted">Pesanan belum dianggap berhasil sampai admin memeriksa pembayaran secara langsung.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="logo">NOLAN <span>TOPUP</span></div>
+  <p style="margin-top:10px">© 2026 NOLAN TOPUP</p>
+</footer>
+
+<script>
+const ADMIN_WA="628138318415";
+const DANA_NUMBER="0895396001313";
+
+const products={
+ "Mobile Legends":["5 Diamonds","12 Diamonds","28 Diamonds","36 Diamonds","56 Diamonds","86 Diamonds","172 Diamonds","257 Diamonds","344 Diamonds","429 Diamonds","514 Diamonds","706 Diamonds"],
+ "Free Fire":["5 Diamonds","12 Diamonds","50 Diamonds","70 Diamonds","100 Diamonds","140 Diamonds","210 Diamonds","355 Diamonds","500 Diamonds","720 Diamonds","1000 Diamonds","1450 Diamonds"],
+ "PUBG Mobile":["60 UC","120 UC","180 UC","325 UC","385 UC","445 UC","660 UC","720 UC","985 UC","1320 UC","1800 UC","3850 UC"],
+ "Roblox":["40 Robux","80 Robux","160 Robux","240 Robux","400 Robux","500 Robux","800 Robux","1000 Robux","1700 Robux","2000 Robux","4500 Robux","10000 Robux"]
+};
+
+let game="Mobile Legends";
+let nominal="";
+
+function selectGame(el){
+ document.querySelectorAll(".games .option").forEach(x=>x.classList.remove("active"));
+ el.classList.add("active");
+ game=el.dataset.game;
+ nominal="";
+ document.getElementById("serverBox").classList.toggle("hidden",game!=="Mobile Legends");
+ renderProducts();
+ updateSummary();
+}
+
+function renderProducts(){
+ const box=document.getElementById("packages");
+ box.innerHTML="";
+ products[game].forEach(item=>{
+  const el=document.createElement("div");
+  el.className="option";
+  el.innerHTML=item+"<small>Pilih nominal</small>";
+  el.onclick=()=>{
+   document.querySelectorAll(".packages .option").forEach(x=>x.classList.remove("active"));
+   el.classList.add("active");
+   nominal=item;
+   updateSummary();
+  };
+  box.appendChild(el);
+ });
+}
+
+function updateSummary(){
+ const player=document.getElementById("player").value.trim()||"Belum diisi";
+ const server=document.getElementById("server").value.trim()||"Belum diisi";
+ document.getElementById("summary").innerHTML=
+ "Game: "+game+"<br>"+
+ "Nominal: "+(nominal||"Belum dipilih")+"<br>"+
+ "User ID: "+player.replace(/[&<>"]/g,"")+"<br>"+
+ (game==="Mobile Legends"?"Zone ID: "+server.replace(/[&<>"]/g,"")+"<br>":"")+
+ "Pembayaran: DANA<br>"+
+ "Nomor DANA: "+DANA_NUMBER;
+}
+
+document.getElementById("player").addEventListener("input",updateSummary);
+document.getElementById("server").addEventListener("input",updateSummary);
+
+async function copyDana(){
+ try{
+  await navigator.clipboard.writeText(DANA_NUMBER);
+  alert("Nomor DANA berhasil disalin!");
+ }catch(e){
+  prompt("Salin nomor DANA berikut:",DANA_NUMBER);
+ }
+}
+
+function sendOrder(){
+ const player=document.getElementById("player").value.trim();
+ const server=document.getElementById("server").value.trim();
+
+ if(!player){alert("Masukkan User ID atau username!");return}
+ if(game==="Mobile Legends"&&!server){alert("Masukkan Zone ID!");return}
+ if(!nominal){alert("Pilih nominal terlebih dahulu!");return}
+
+ const order="NLN"+Date.now().toString().slice(-8);
+ const message=
+ "Halo Admin NOLAN TOPUP, saya ingin memesan:%0A%0A"+
+ "Nomor pesanan: "+order+"%0A"+
+ "Game: "+encodeURIComponent(game)+"%0A"+
+ "Nominal: "+encodeURIComponent(nominal)+"%0A"+
+ "User ID: "+encodeURIComponent(player)+"%0A"+
+ (game==="Mobile Legends"?"Zone ID: "+encodeURIComponent(server)+"%0A":"")+
+ "Metode pembayaran: DANA%0A"+
+ "Nomor tujuan: "+DANA_NUMBER+"%0A%0A"+
+ "Mohon konfirmasi total harga sebelum saya transfer.";
+
+ window.open("https://wa.me/"+ADMIN_WA+"?text="+message,"_blank");
+}
+
+renderProducts();
+updateSummary();
+</script>
+</body>
+    </html>
+    
