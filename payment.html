@@ -245,7 +245,7 @@ color:#a9b8ce;
    </div>
 
    <p id="promoStatus" class="promo-status">
-    Tersedia diskon 6% dan 7%. Khusus produk Diamond (DM).
+    🎁 Tersedia diskon 6% dan 7%. Khusus produk Diamond (DM).
    </p>
   </div>
  </section>
@@ -290,7 +290,7 @@ color:#a9b8ce;
   <h2>Konfirmasi Pesanan</h2>
   <p class="muted">Setelah transfer berhasil, tekan tombol di bawah untuk mengirim detail pesanan kepada admin.</p>
 
-  <button class="primary" onclick="confirmOrder()">KONFIRMASI VIA WHATSAPP</button>
+  <button class="primary" onclick="confirmOrder()">📲 KONFIRMASI VIA WHATSAPP</button>
 
   <p class="notice">Admin akan memeriksa pembayaran secara manual. Pesanan belum dianggap lunas sebelum pembayaran diverifikasi.</p>
 
@@ -405,12 +405,10 @@ if(!order||!order.game||!order.userId||!order.price){
 function isDiamondProduct(){
  const item=String(order?.item||"");
 
- // WDP dan Membership tidak boleh mendapatkan diskon.
  if(/wdp|weekly\s*diamond|membership/i.test(item)){
   return false;
  }
 
- // Hanya produk yang namanya mengandung Diamond atau DM.
  return /diamond|\bdm\b/i.test(item);
 }
 
@@ -457,7 +455,7 @@ function applyPromo(){
  promoApplied=true;
  appliedPromoCode=code;
 
- status.textContent="Berhasil! Diskon "+discountPercent+"% aktif untuk produk Diamond.";
+ status.textContent="🎉 Berhasil! Diskon "+discountPercent+"% aktif untuk produk Diamond.";
  status.style.color="#55e6a5";
 
  updateTotals();
@@ -495,31 +493,54 @@ function confirmOrder(){
  if(!order)return;
 
  const promoLine=promoApplied
-  ?"Kode promo: "+appliedPromoCode+"\nDiskon: "+discountPercent+"%\nPotongan: "+rupiah(discount)+"\n"
-  :"Kode promo: Tidak digunakan\n";
+  ?`🎟️ Kode Promo: ${appliedPromoCode}
+🔥 Diskon: ${discountPercent}%
+💸 Potongan: ${rupiah(discount)}
+`
+  :"🎟️ Kode Promo: Tidak digunakan\n";
 
  const message=
-`HALO NOLAN TOPUP!
-Saya ingin konfirmasi pesanan:
+`👋 HALO ADMIN NOLAN TOPUP!
 
-Nomor: ${order.orderId}
-Nama: ${order.buyer}
-Game: ${order.game}
-User ID: ${order.userId}
-${order.serverId?"Server ID: "+order.serverId+"\n":""}Nominal: ${order.item}
-Subtotal: ${rupiah(order.price)}
-${promoLine}TOTAL PEMBAYARAN: ${rupiah(totalPayment)}
+🛒 *SAYA INGIN KONFIRMASI PESANAN*
 
-Metode pembayaran: ${paymentMethod.toUpperCase()}
-Nomor DANA: ${DANA_NUMBER}
+━━━━━━━━━━━━━━━━━━
+📋 *DETAIL PESANAN*
+━━━━━━━━━━━━━━━━━━
 
-Saya akan mengirim bukti pembayaran untuk diperiksa admin.
+🆔 Nomor Pesanan: ${order.orderId}
+👤 Nama Pembeli: ${order.buyer}
+🎮 Game: ${order.game}
+🪪 User ID: ${order.userId}
+${order.serverId?`🌐 Server ID: ${order.serverId}\n`:""}💎 Produk: ${order.item}
 
-Mohon verifikasi pesanan saya.`;
+━━━━━━━━━━━━━━━━━━
+💰 *RINCIAN PEMBAYARAN*
+━━━━━━━━━━━━━━━━━━
+
+🧾 Subtotal: ${rupiah(order.price)}
+${promoLine}💵 *TOTAL BAYAR: ${rupiah(totalPayment)}*
+
+━━━━━━━━━━━━━━━━━━
+💳 *METODE PEMBAYARAN*
+━━━━━━━━━━━━━━━━━━
+
+📱 Metode: ${paymentMethod.toUpperCase()}
+🏦 Nomor DANA: ${DANA_NUMBER}
+
+━━━━━━━━━━━━━━━━━━
+
+📸 Saya akan mengirimkan bukti pembayaran untuk diperiksa.
+
+🙏 Mohon admin memeriksa dan memproses pesanan saya.
+
+✨ Terima kasih!
+*NOLAN TOPUP* 🚀`;
 
  const url="https://wa.me/"+ADMIN_WA+"?text="+encodeURIComponent(message);
  window.open(url,"_blank");
 }
 </script>
 </body>
-</html>
+ </html>
+ 
