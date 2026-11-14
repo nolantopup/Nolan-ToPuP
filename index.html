@@ -4,347 +4,420 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NOLAN TOPUP</title>
+<title>NOLAN TOPUP - Game Store</title>
 
 <style>
-*{
- box-sizing:border-box;
- margin:0;
- padding:0;
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+--red:#ff1744;
+--cyan:#00e5ff;
+--dark:#090b14;
+--panel:#141827;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
- background:
- radial-gradient(circle at 0% 0%,#410b1d 0,transparent 35%),
- radial-gradient(circle at 100% 20%,#003b48 0,transparent 35%),
- repeating-linear-gradient(
- 135deg,
- transparent 0px,
- transparent 95px,
- #00e5ff12 96px,
- #00e5ff12 98px,
- transparent 99px,
- transparent 190px
- ),
- repeating-linear-gradient(
- 45deg,
- transparent 0px,
- transparent 130px,
- #ff174412 131px,
- #ff174412 133px,
- transparent 134px,
- transparent 250px
- ),
- #090b14;
- color:white;
- font-family:Arial,sans-serif;
- min-height:100vh;
- overflow-x:hidden;
+background:
+radial-gradient(circle at 0% 0%,#410b1d 0,transparent 35%),
+radial-gradient(circle at 100% 20%,#003b48 0,transparent 35%),
+#090b14;
+color:white;
+font-family:Arial,sans-serif;
+min-height:100vh;
+animation:bgRGB 8s ease-in-out infinite alternate;
+}
+
+@keyframes bgRGB{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(35deg)}
 }
 
 header{
- padding:20px;
- text-align:center;
- background:#111b2e;
- border-bottom:1px solid #26364e;
- box-shadow:0 4px 20px #0008;
+background:#0c101bea;
+padding:19px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid #263750;
+box-shadow:0 3px 20px #ff174422;
 }
 
 .logo{
- font-size:27px;
- font-weight:900;
- letter-spacing:2px;
- color:#00e5ff;
- text-shadow:0 0 10px #00e5ff,0 0 25px #00e5ff;
- animation:logoRGB 3s infinite alternate;
+font-size:23px;
+font-weight:900;
+color:var(--cyan);
+text-shadow:0 0 8px var(--cyan),0 0 18px #00e5ff88;
+animation:logoRGB 3s infinite alternate;
 }
 
 @keyframes logoRGB{
- from{
-  color:#00e5ff;
-  text-shadow:0 0 10px #00e5ff;
- }
- to{
-  color:#ff1744;
-  text-shadow:0 0 10px #ff1744,0 0 25px #ff1744;
- }
+from{text-shadow:0 0 8px var(--cyan),0 0 18px var(--cyan)}
+to{text-shadow:0 0 8px var(--red),0 0 22px var(--red)}
+}
+
+header small{
+color:#9babc4;
+letter-spacing:2px;
+}
+
+main{
+max-width:950px;
+margin:auto;
+padding:18px;
 }
 
 .hero{
- margin:22px 15px;
- padding:25px 15px;
- text-align:center;
- background:linear-gradient(135deg,#111b2e,#171126);
- border:1px solid #26364e;
- border-radius:15px;
- box-shadow:0 0 18px #00e5ff25;
- animation:heroRGB 3s infinite alternate;
+padding:28px;
+border-radius:16px;
+background:linear-gradient(120deg,#3b1024,#102c45,#28134b);
+margin-bottom:25px;
+border:1px solid #ff174477;
+box-shadow:0 0 18px #ff174422,0 0 22px #00e5ff22;
+position:relative;
+overflow:hidden;
+animation:heroRGB 3s infinite alternate;
 }
 
 @keyframes heroRGB{
- from{box-shadow:0 0 12px #00e5ff35}
- to{box-shadow:0 0 18px #ff174435}
+from{box-shadow:0 0 15px #ff174433,0 0 20px #00e5ff22}
+to{box-shadow:0 0 22px #ff174466,0 0 28px #00e5ff55}
 }
 
 .hero h1{
- font-size:25px;
- margin-bottom:10px;
+font-size:25px;
+margin-bottom:9px;
+color:white;
+text-shadow:0 0 12px var(--red);
 }
 
-.hero p{
- color:#aab5c8;
- font-size:14px;
- line-height:1.6;
+.hero p,.muted{
+color:#b7c5d9;
+font-size:13px;
+line-height:1.6;
 }
 
-.container{
- max-width:850px;
- margin:auto;
- padding:10px 15px 35px;
-}
-
-.section-title{
- font-size:20px;
- margin:15px 0;
+h2{
+font-size:19px;
+margin:23px 0 15px;
+border-left:4px solid var(--red);
+padding-left:11px;
+text-shadow:0 0 9px #ff174455;
 }
 
 .games{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:15px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:13px;
 }
 
 .game{
- position:relative;
- overflow:hidden;
- padding:15px 10px;
- background:#111b2e;
- border:1px solid #26364e;
- border-radius:13px;
- text-align:center;
- cursor:pointer;
- transition:.2s;
- animation:cardIn .5s ease both;
+background:linear-gradient(145deg,#1b2031,#101522);
+border:1px solid #344052;
+border-radius:13px;
+overflow:hidden;
+cursor:pointer;
+transition:.25s;
+position:relative;
+isolation:isolate;
+animation:cardEnter .6s ease both;
 }
 
-@keyframes cardIn{
- from{opacity:0;transform:translateY(15px)}
- to{opacity:1;transform:translateY(0)}
+.game:nth-child(2){animation-delay:.08s}
+.game:nth-child(3){animation-delay:.16s}
+.game:nth-child(4){animation-delay:.24s}
+
+@keyframes cardEnter{
+from{
+opacity:0;
+transform:translateY(20px) scale(.96);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
 }
 
 .game::before{
- content:"";
- position:absolute;
- inset:-50%;
- background:conic-gradient(
- transparent,
- #00e5ff,
- transparent,
- #ff1744,
- transparent
- );
- animation:rgbBorder 5s linear infinite;
- z-index:0;
+content:"";
+position:absolute;
+inset:-50%;
+background:conic-gradient(
+transparent,
+var(--cyan),
+transparent,
+var(--red),
+transparent
+);
+animation:rgbBorder 3s linear infinite;
+z-index:-2;
 }
 
 .game::after{
- content:"";
- position:absolute;
- inset:2px;
- background:#111b2e;
- border-radius:11px;
- z-index:0;
+content:"";
+position:absolute;
+inset:1px;
+background:linear-gradient(145deg,#1b2031,#101522);
+border-radius:12px;
+z-index:-1;
 }
 
 @keyframes rgbBorder{
- to{transform:rotate(360deg)}
+to{transform:rotate(360deg)}
 }
 
-.game>*{
- position:relative;
- z-index:1;
-}
-
-.game:active{
- transform:scale(.96);
+.game:hover{
+transform:translateY(-4px);
+border-color:var(--cyan);
+box-shadow:0 0 16px #00e5ff55;
 }
 
 .game img{
- width:75px;
- height:75px;
- object-fit:cover;
- border-radius:13px;
- margin-bottom:10px;
+width:100%;
+height:115px;
+object-fit:cover;
+display:block;
 }
 
-.game h3{
- font-size:15px;
+.info{
+padding:12px;
 }
 
-.game p{
- color:#9baac0;
- font-size:12px;
- margin-top:5px;
+.info h3{font-size:15px}
+
+.info p{
+font-size:12px;
+color:#aabbd2;
+margin-top:5px;
 }
 
 button{
- border:none;
- cursor:pointer;
- font-weight:bold;
- transition:transform .15s,filter .2s;
+cursor:pointer;
+border:0;
+border-radius:9px;
+padding:13px;
+font-weight:bold;
+transition:.2s;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+position:relative;
+overflow:hidden;
 }
 
-button:active{
- transform:scale(.95);
+.game button,.primary{
+background:linear-gradient(90deg,var(--red),#a900ff);
+color:white;
+width:100%;
+margin-top:12px;
+box-shadow:0 0 12px #ff174455;
 }
 
-.order-box{
- display:none;
- background:#111b2e;
- border:1px solid #26364e;
- border-radius:15px;
- padding:18px;
- margin-top:15px;
- animation:pageSmooth .3s ease;
-}
-
-@keyframes pageSmooth{
- from{opacity:0;transform:translateY(10px)}
- to{opacity:1;transform:translateY(0)}
-}
-
-.order-box h2{
- font-size:20px;
- margin-bottom:18px;
- color:#00e5ff;
-}
-
-label{
- display:block;
- margin:15px 0 8px;
- font-size:14px;
- color:#dce5f2;
-}
-
-input{
- width:100%;
- padding:13px;
- border-radius:9px;
- border:1px solid #34445e;
- background:#090e19;
- color:white;
- outline:none;
- font-size:15px;
- transition:.2s;
-}
-
-input:focus{
- border-color:#00e5ff;
- box-shadow:0 0 10px #00e5ff55;
-}
-
-.packages{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:10px;
-}
-
-.pack{
- position:relative;
- overflow:hidden;
- padding:13px 8px;
- border-radius:9px;
- background:#18243a;
- border:1px solid #34445e;
- color:white;
- font-size:13px;
-}
-
-.pack.active{
- background:#003d4b;
- border:1px solid #00e5ff;
- box-shadow:0 0 12px #00e5ff75;
- animation:packRGB 1.5s infinite alternate;
-}
-
-@keyframes packRGB{
- from{box-shadow:0 0 5px #00e5ff55}
- to{box-shadow:0 0 15px #00e5ff}
-}
-
-.pack:active{
- transform:scale(.96);
-}
-
-.summary{
- margin-top:20px;
- padding:15px;
- background:#090e19;
- border:1px solid #34445e;
- border-radius:10px;
- line-height:1.8;
- font-size:14px;
-}
-
-.summary strong{
- color:#00e5ff;
-}
-
-.main-btn{
- width:100%;
- margin-top:18px;
- padding:15px;
- border-radius:9px;
- background:linear-gradient(90deg,#00bcd4,#00e5ff);
- color:#06121a;
- font-size:15px;
- position:relative;
- overflow:hidden;
-}
-
-.main-btn::after{
- content:"";
- position:absolute;
- top:0;
- left:-100%;
- width:50%;
- height:100%;
- background:linear-gradient(90deg,transparent,#ffffff88,transparent);
- animation:buttonLight 3.5s infinite;
+.game button::after,.primary::after{
+content:"";
+position:absolute;
+top:0;
+left:-120%;
+width:60%;
+height:100%;
+background:linear-gradient(
+90deg,
+transparent,
+#ffffff66,
+transparent
+);
+transform:skewX(-25deg);
+animation:buttonLight 2.5s infinite;
+pointer-events:none;
 }
 
 @keyframes buttonLight{
- to{left:150%}
+to{left:150%}
 }
 
-.back-btn{
- padding:10px 15px;
- margin-bottom:15px;
- border-radius:8px;
- background:#26364e;
- color:white;
+.game button:hover,.primary:hover{
+box-shadow:0 0 20px #ff1744aa,0 0 15px #00e5ff66;
+transform:scale(1.02);
+}
+
+.panel{
+background:linear-gradient(145deg,#171d2d,#101522);
+border:1px solid #344052;
+padding:18px;
+border-radius:14px;
+margin-top:15px;
+box-shadow:0 0 15px #00e5ff16;
+}
+
+.hidden{display:none!important}
+
+.back{
+background:#293a54;
+color:white;
+margin-bottom:15px;
+border:1px solid #52637d;
+}
+
+.back:hover{
+border-color:var(--cyan);
+box-shadow:0 0 10px #00e5ff55;
+}
+
+label{
+font-size:13px;
+color:#c5d2e5;
+display:block;
+margin-top:15px;
+}
+
+input,select{
+width:100%;
+padding:13px;
+background:#0a1020;
+border:1px solid #354966;
+border-radius:9px;
+color:white;
+margin-top:7px;
+outline:none;
+transition:.25s;
+}
+
+input:focus,select:focus{
+border-color:var(--cyan);
+box-shadow:0 0 10px #00e5ff55;
+transform:scale(1.01);
+}
+
+.packages{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:12px;
+}
+
+.pack{
+padding:13px;
+background:#0c1729;
+border:1px solid #344964;
+border-radius:10px;
+color:white;
+text-align:left;
+position:relative;
+overflow:hidden;
+transition:.2s;
+-webkit-tap-highlight-color:transparent;
+touch-action:manipulation;
+}
+
+.pack:hover{
+border-color:var(--cyan);
+box-shadow:0 0 10px #00e5ff44;
+}
+
+.pack.active{
+border:2px solid var(--cyan);
+background:#102d41;
+box-shadow:0 0 14px #00e5ff66;
+animation:packRGB 1.5s infinite alternate;
+}
+
+@keyframes packRGB{
+from{box-shadow:0 0 8px #00e5ff66}
+to{box-shadow:0 0 20px #00e5ffaa}
+}
+
+.pack b{
+display:block;
+font-size:14px;
+}
+
+.pack small{
+display:block;
+color:var(--cyan);
+margin-top:7px;
+}
+
+.notice{
+font-size:12px;
+color:#9eafc6;
+line-height:1.6;
+margin-top:12px;
 }
 
 footer{
- text-align:center;
- padding:25px 10px;
- color:#78879c;
- font-size:12px;
- border-top:1px solid #26364e;
+text-align:center;
+color:#7588a5;
+font-size:12px;
+padding:30px;
+border-top:1px solid #263750;
+margin-top:25px;
 }
 
-@media(max-width:350px){
- .games{gap:9px}
- .game{padding:12px 5px}
- .game img{width:60px;height:60px}
+/* ===== TRANSISI HALAMAN ===== */
+
+#catalog,#order{
+animation:pageSmooth .45s ease both;
 }
+
+@keyframes pageSmooth{
+from{
+opacity:0;
+transform:translateY(18px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* ===== EFEK SENTUHAN ===== */
+
+button:active{
+transform:scale(.94);
+filter:brightness(1.4);
+transition:.12s;
+}
+
+.game:active{
+transform:scale(.97);
+box-shadow:0 0 15px var(--cyan),0 0 25px var(--red);
+}
+
+.pack:active{
+transform:scale(.95);
+background:#123b50;
+box-shadow:0 0 20px var(--cyan);
+}
+
+.game:active::before{
+filter:brightness(2);
+}
+
+/* Animasi gelombang sentuhan */
+
+@keyframes rippleTouch{
+to{
+transform:scale(9);
+opacity:0;
+}
+}
+
+@media(min-width:650px){
+.games{grid-template-columns:repeat(4,1fr)}
+.packages{grid-template-columns:repeat(3,1fr)}
+}
+
+/* Pengaturan aksesibilitas */
 
 @media(prefers-reduced-motion:reduce){
- *,*::before,*::after{
-  animation-duration:.01ms!important;
-  animation-iteration-count:1!important;
-  transition:none!important;
- }
+*,*::before,*::after{
+animation-duration:.01ms!important;
+animation-iteration-count:1!important;
+scroll-behavior:auto!important;
+transition-duration:.01ms!important;
+}
 }
 </style>
 </head>
@@ -352,151 +425,158 @@ footer{
 <body>
 
 <header>
- <div class="logo">NOLAN TOPUP</div>
+ <div class="logo">NOLAN ToPuP💎</div>
+ <small>GAME STORE</small>
 </header>
 
-<div class="hero">
- <h1>TOP UP GAME FAVORITMU</h1>
- <p>Top up game mudah, cepat, dan praktis.</p>
- <p>Pilih game favoritmu dan pesan sekarang!</p>
-</div>
+<main>
 
-<div class="container">
+ <section class="hero">
+  <h1>TOP UP GAME FAVORITMU!</h1>
+  <p>Murah, mudah, dan praktis. Pilih game favoritmu sekarang.</p>
+ </section>
 
  <section id="catalog">
-  <h2 class="section-title">Pilih Game</h2>
+  <h2>🎮 PILIH GAME</h2>
 
   <div class="games">
 
    <div class="game" onclick="openGame('ml')">
-    <img src="https://placehold.co/150x150/14243a/00e5ff?text=ML" alt="Mobile Legends">
-    <h3>Mobile Legends</h3>
-    <p>Diamond</p>
+    <img src="https://placehold.co/500x300/172b52/ffffff?text=MOBILE+LEGENDS" alt="Mobile Legends">
+    <div class="info">
+     <h3>💎Mobile Legends💎</h3>
+     <p>Diamond</p>
+     <button>KLIK</button>
+    </div>
    </div>
 
    <div class="game" onclick="openGame('ff')">
-    <img src="https://placehold.co/150x150/14243a/ff1744?text=FF" alt="Free Fire">
-    <h3>Free Fire</h3>
-    <p>Diamond</p>
+    <img src="https://placehold.co/500x300/45251c/ffffff?text=FREE+FIRE" alt="Free Fire">
+    <div class="info">
+     <h3>💎Free Fire💎</h3>
+     <p>Diamond</p>
+     <button>KLIK</button>
+    </div>
    </div>
 
    <div class="game" onclick="openGame('pubg')">
-    <img src="https://placehold.co/150x150/14243a/00e5ff?text=PUBG" alt="PUBG Mobile">
-    <h3>PUBG Mobile</h3>
-    <p>UC</p>
+    <img src="https://placehold.co/500x300/343321/ffffff?text=PUBG+MOBILE" alt="PUBG Mobile">
+    <div class="info">
+     <h3>💎PUBG Mobile💎</h3>
+     <p>UC</p>
+     <button>KLIK</button>
+    </div>
    </div>
 
    <div class="game" onclick="openGame('hok')">
-    <img src="https://placehold.co/150x150/14243a/ff1744?text=HOK" alt="Honor of Kings">
-    <h3>Honor of Kings</h3>
-    <p>Token</p>
+    <img src="https://placehold.co/500x300/263d50/ffffff?text=HONOR+OF+KINGS" alt="Honor of Kings">
+    <div class="info">
+     <h3>💎Honor of Kings💎</h3>
+     <p>Token</p>
+     <button>KLIK</button>
+    </div>
    </div>
 
   </div>
  </section>
 
- <section class="order-box" id="order">
+ <section id="order" class="hidden">
+  <div class="panel">
 
-  <button class="back-btn" onclick="backHome()">← Kembali</button>
+   <button class="back" onclick="backHome()">← Kembali</button>
 
-  <h2 id="gameTitle">Pesan Top Up</h2>
+   <h2 id="gameTitle">PESANAN</h2>
+   <p class="muted">Masukkan data akun game dengan benar.</p>
 
-  <label for="userId">User ID</label>
-  <input id="userId" type="text" placeholder="Masukkan User ID">
+   <label>User ID / Player ID</label>
+   <input id="userId" placeholder="Masukkan User ID" autocomplete="off">
 
-  <div id="serverArea">
-   <label for="serverId">Server ID</label>
-   <input id="serverId" type="text" placeholder="Masukkan Server ID">
+   <div id="serverArea">
+    <label>Server ID</label>
+    <input id="serverId" placeholder="Masukkan Server ID" autocomplete="off">
+   </div>
+
+   <h2>PILIH NOMINAL</h2>
+   <div class="packages" id="packages"></div>
+
+   <label>Nama pembeli</label>
+   <input id="buyer" placeholder="Masukkan nama pembeli" autocomplete="name">
+
+   <div class="panel" id="orderSummary">
+    <p class="muted">Ringkasan pesanan</p>
+    <p id="summary" style="line-height:2;margin-top:8px">
+     Pilih nominal terlebih dahulu.
+    </p>
+   </div>
+
+   <button class="primary" onclick="continuePayment()">
+    LANJUT KE PEMBAYARAN →
+   </button>
+
+   <p class="notice">
+    Kamu akan diarahkan ke halaman pembayaran terpisah.
+   </p>
+
   </div>
-
-  <label>Pilih Nominal</label>
-  <div class="packages" id="packages"></div>
-
-  <label for="buyer">Nama Pembeli</label>
-  <input id="buyer" type="text" placeholder="Masukkan nama pembeli">
-
-  <div class="summary" id="summary">
-   <strong>Ringkasan Pesanan</strong>
-   <div id="orderSummary">Pilih nominal terlebih dahulu.</div>
-  </div>
-
-  <button class="main-btn" onclick="continuePayment()">
-   LANJUTKAN PEMBAYARAN
-  </button>
-
  </section>
 
-</div>
+</main>
 
-<footer>
- © 2026 NOLAN TOPUP. All Rights Reserved.
-</footer>
+<footer>NOLAN TOPUP © 2026</footer>
 
 <script>
+
 const games={
  ml:{
   name:"Mobile Legends",
   packs:[
-   ["86 Diamond",20000],
-   ["172 Diamond",39000],
-   ["257 Diamond",57000],
-   ["344 Diamond",76000],
-   ["429 Diamond",95000],
-   ["514 Diamond",114000],
-   ["706 Diamond",152000],
-   ["878 Diamond",190000],
+   ["86 Diamond",20000],["172 Diamond",39000],
+   ["257 Diamond",57000],["344 Diamond",76000],
+   ["429 Diamond",95000],["514 Diamond",114000],
+   ["706 Diamond",152000],["878 Diamond",190000],
    ["1412 Diamond",300000]
   ]
  },
  ff:{
   name:"Free Fire",
   packs:[
-   ["70 Diamond",10000],
-   ["140 Diamond",20000],
-   ["355 Diamond",50000],
-   ["720 Diamond",100000],
-   ["1450 Diamond",200000],
-   ["2180 Diamond",300000]
+   ["70 Diamond",10000],["140 Diamond",20000],
+   ["355 Diamond",50000],["720 Diamond",100000],
+   ["1450 Diamond",200000],["2180 Diamond",300000]
   ]
  },
  pubg:{
   name:"PUBG Mobile",
   packs:[
-   ["60 UC",16000],
-   ["325 UC",79000],
-   ["660 UC",159000],
-   ["1800 UC",399000],
+   ["60 UC",16000],["325 UC",79000],
+   ["660 UC",159000],["1800 UC",399000],
    ["3850 UC",799000]
   ]
  },
  hok:{
   name:"Honor of Kings",
   packs:[
-   ["80 Token",16000],
-   ["240 Token",45000],
-   ["400 Token",75000],
-   ["800 Token",149000],
+   ["80 Token",16000],["240 Token",45000],
+   ["400 Token",75000],["800 Token",149000],
    ["1200 Token",220000]
   ]
  }
 };
 
-let selectedGame=null;
-let selectedPack=null;
+let currentGame="";
+let selected=null;
 
-function rupiah(number){
- return "Rp"+number.toLocaleString("id-ID");
-}
+const money=n=>"Rp"+n.toLocaleString("id-ID");
 
 function openGame(id){
- selectedGame=id;
- selectedPack=null;
+ currentGame=id;
+ selected=null;
 
- document.getElementById("catalog").style.display="none";
- document.getElementById("order").style.display="block";
+ document.getElementById("catalog").classList.add("hidden");
+ document.getElementById("order").classList.remove("hidden");
 
  document.getElementById("gameTitle").textContent=
- "Top Up "+games[id].name;
+ "TOP UP "+games[id].name;
 
  document.getElementById("userId").value="";
  document.getElementById("serverId").value="";
@@ -505,74 +585,57 @@ function openGame(id){
  document.getElementById("serverArea").style.display=
  id==="ml"?"block":"none";
 
- const packageArea=document.getElementById("packages");
- packageArea.innerHTML="";
+ const area=document.getElementById("packages");
+ area.replaceChildren();
 
  games[id].packs.forEach((pack,index)=>{
   const button=document.createElement("button");
   button.className="pack";
-  button.textContent=pack[0]+" - "+rupiah(pack[1]);
 
+  const name=document.createElement("b");
+  name.textContent=pack[0];
+
+  const price=document.createElement("small");
+  price.textContent=money(pack[1]);
+
+  button.append(name,price);
   button.onclick=()=>selectPack(index,button);
-
-  packageArea.appendChild(button);
+  area.appendChild(button);
  });
 
  updateSummary();
-
- window.scrollTo({top:0,behavior:"smooth"});
+ window.scrollTo(0,0);
 }
 
 function selectPack(index,button){
- selectedPack=index;
+ selected=games[currentGame].packs[index];
 
- document.querySelectorAll(".pack").forEach(item=>{
-  item.classList.remove("active");
- });
+ document.querySelectorAll(".pack").forEach(el=>
+  el.classList.remove("active")
+ );
 
  button.classList.add("active");
-
  updateSummary();
 
- document.getElementById("summary").scrollIntoView({
-  behavior:"smooth",
-  block:"center"
- });
+ setTimeout(()=>{
+  document.getElementById("buyer").scrollIntoView({
+   behavior:"smooth",
+   block:"center"
+  });
+ },150);
 }
 
 function updateSummary(){
- const area=document.getElementById("orderSummary");
-
- if(!selectedGame){
-  area.textContent="Pilih game terlebih dahulu.";
-  return;
- }
-
- if(selectedPack===null){
-  area.innerHTML=
-   "Game: <strong>"+games[selectedGame].name+
-   "</strong><br>Nominal: Belum dipilih";
-  return;
- }
-
- const pack=games[selectedGame].packs[selectedPack];
-
- area.innerHTML=
-  "Game: <strong>"+games[selectedGame].name+
-  "</strong><br>"+
-  "Nominal: <strong>"+pack[0]+
-  "</strong><br>"+
-  "Harga: <strong>"+rupiah(pack[1])+"</strong>";
+ document.getElementById("summary").textContent=
+ selected
+ ?games[currentGame].name+" | "+selected[0]+" | "+money(selected[1])
+ :"Pilih nominal terlebih dahulu.";
 }
 
 function backHome(){
- selectedGame=null;
- selectedPack=null;
-
- document.getElementById("order").style.display="none";
- document.getElementById("catalog").style.display="block";
-
- window.scrollTo({top:0,behavior:"smooth"});
+ document.getElementById("order").classList.add("hidden");
+ document.getElementById("catalog").classList.remove("hidden");
+ window.scrollTo(0,0);
 }
 
 function continuePayment(){
@@ -580,52 +643,39 @@ function continuePayment(){
  const serverId=document.getElementById("serverId").value.trim();
  const buyer=document.getElementById("buyer").value.trim();
 
- if(!userId){
-  alert("Masukkan User ID Bos!");
-  return;
- }
+ if(!userId){alert("Masukkan User ID Bos!");return}
+ if(currentGame==="ml"&&!serverId){alert("Masukkan Server ID juga Bos!");return}
+ if(!selected){alert("Pilih nominal!");return}
+ if(!buyer){alert("Masukkan nama pembeli!");return}
 
- if(selectedGame==="ml"&&!serverId){
-  alert("Masukkan Server ID juga Bos!");
-  return;
- }
-
- if(selectedPack===null){
-  alert("Pilih nominal!");
-  return;
- }
-
- if(!buyer){
-  alert("Masukkan nama pembeli!");
-  return;
- }
-
- const pack=games[selectedGame].packs[selectedPack];
-
- const orderData={
-  game:games[selectedGame].name,
-  gameId:selectedGame,
+ const order={
+  gameId:currentGame,
+  game:games[currentGame].name,
   userId:userId,
-  serverId:selectedGame==="ml"?serverId:"",
-  package:pack[0],
-  price:pack[1],
-  buyer:buyer
+  serverId:currentGame==="ml"?serverId:"",
+  buyer:buyer,
+  item:selected[0],
+  price:selected[1],
+  orderId:"NL"+Date.now()
  };
 
  try{
-  sessionStorage.setItem("nolanOrder",JSON.stringify(orderData));
+  sessionStorage.setItem("nolanOrder",JSON.stringify(order));
   window.location.href="payment.html";
- }catch(error){
+ }catch(e){
   alert("Penyimpanan pesanan gagal. Coba lagi.");
  }
 }
 
+/* ===== EFEK GELOMBANG SENTUHAN ===== */
+
 document.addEventListener("pointerdown",function(e){
+
  const target=e.target.closest("button,.game,.pack");
  if(!target)return;
 
- const rect=target.getBoundingClientRect();
  const ripple=document.createElement("span");
+ const rect=target.getBoundingClientRect();
 
  ripple.style.cssText=`
   position:absolute;
@@ -641,25 +691,12 @@ document.addEventListener("pointerdown",function(e){
   z-index:5;
  `;
 
- if(getComputedStyle(target).position==="static"){
-  target.style.position="relative";
- }
-
  target.appendChild(ripple);
 
  setTimeout(()=>ripple.remove(),600);
+
 });
 
-const rippleStyle=document.createElement("style");
-rippleStyle.textContent=`
- @keyframes rippleTouch{
-  to{
-   transform:scale(5);
-   opacity:0;
-  }
- }
-`;
-document.head.appendChild(rippleStyle);
 </script>
 
 </body>
