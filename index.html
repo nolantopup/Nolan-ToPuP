@@ -164,22 +164,64 @@ button:active{transform:scale(.94);filter:brightness(1.4);transition:.12s}
   to { filter: brightness(1.2); }
 }
  
+.loading-logo {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #00e5ff;
+  text-shadow: 0 0 10px #00e5ff,
+               0 0 25px #00e5ff,
+               0 0 45px #007bff;
+  animation: logoPulse 1.5s infinite alternate;
+}
+
+.loading-line {
+  width: 190px;
+  height: 6px;
+  background: #263449;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.loading-line span {
+  display: block;
+  width: 40%;
+  height: 100%;
+  background: #00e5ff;
+  box-shadow: 0 0 15px #00e5ff;
+  animation: loadingMove 1.2s infinite;
+}
+
+@keyframes loadingMove {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+
+@keyframes logoPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+ }
+                    
 </style>
 </head>
 
 <body>
  <!-- LOADING SCREEN -->
-<div id="loadingScreen">
-  <div class="loading-logo">NOLAN TOPUP💎</div>
-  <div class="loading-line">
-    <span></span>
-  </div>
-  <p>LOADING GAME STORE...</p>
+
+<div class="loading-logo">NOLAN TOPUP💎</div>
+<div class="loading-line">
+  <span></span>
 </div>
+<p>PREMIUM GAMING STORE</p>
+<small>INITIALIZING SYSTEM...</small>
+<p>PREPARE YOUR GAME EXPERIENCE</p>
+</div>
+
 <header>
  <div class="logo">NOLAN ToPuP💎</div>
  <small>GAME STORE</small>
 </header>
+ 
 
 <main>
 <section class="hero">
